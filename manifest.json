@@ -6,8 +6,15 @@
        "scripts": ["background.js"],
        "persistent": false
      },
-    "page_action": {
-      "default_popup": "popup.html"
+    "content_scripts": [{
+        "matches": ["<all_urls>"],
+        "js": ["content.js"]
+    }],
+    "permissions": [
+        "pageCapture",
+        "activeTab"],
+    "browser_action": {
+      //"default_popup": "popup.html"
     },
     "manifest_version": 2
 }
