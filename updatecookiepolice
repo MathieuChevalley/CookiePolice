@@ -1,0 +1,1 @@
+scp -i cookiepolice.pem backend.py ubuntu@18.224.59.249:~/hello.py

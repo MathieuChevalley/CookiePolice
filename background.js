@@ -6,8 +6,7 @@ function show_content(content) {
     reader.readAsBinaryString(content);
 }
 
-
 chrome.browserAction.onClicked.addListener(function(tab) {
     console.log("on click listener");
-    chrome.pageCapture.saveAsMHTML({tabId: tab.id}, show_content)
+    chrome.pageCapture.saveAsHTML({tabId: tab.id}, show_content);
 });
