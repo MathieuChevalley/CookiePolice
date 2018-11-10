@@ -11,3 +11,4 @@ chrome.browserAction.setPopup(popup.html, function(tab) {
     console.log("on click listener");
     chrome.pageCapture.saveAsMHTML({tabId: tab.id}, show_content)
 });*/
+
