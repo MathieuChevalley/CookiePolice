@@ -6,9 +6,14 @@
     reader.readAsBinaryString(content);
 }
 
+function resources(resources) {
+    alert("resources");
+    alert(resources);
+}
 
 chrome.browserAction.setPopup(popup.html, function(tab) {
-    console.log("on click listener");
-    chrome.pageCapture.saveAsMHTML({tabId: tab.id}, show_content)
-});*/
-
+    alert("on click listener");
+    chrome.devtools.inspectedWindow.getResources(resources(result));
+    //chrome.pageCapture.saveAsMHTML({tabId: tab.id}, show_content)
+});
+*/
