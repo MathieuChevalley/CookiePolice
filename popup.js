@@ -16,27 +16,42 @@ source = document.getElementById('source');
     reader.readAsText(content);
 }*/
 
-function detect(text) {
-    if (text.includes("igodigital")) {
-        alert("iGO");
-      }
-      if (text.includes("bluekai")) {
-        alert("BlueKai");
-      }
-      if (text.includes("google-analytics")) {
-        alert("google-analytics");
-      }
-      if (text.includes("shoprunner")) {
-        alert("ShopRunner");
-      }
-    if (text.includes("criteo")) {
-        alert("criteo");
-    }  
-    if (text.includes("googletagmanager")) {
-        alert("Google Tag Manager");
-    }  
-}
+// function detect(text) {
+//     if (text.includes("igodigital")) {
+//         alert("iGO");
+//       }
+//       if (text.includes("bluekai")) {
+//         alert("BlueKai");
+//       }
+//       if (text.includes("google-analytics")) {
+//         alert("google-analytics");
+//       }
+//       if (text.includes("shoprunner")) {
+//         alert("ShopRunner");
+//       }
+//     if (text.includes("criteo")) {
+//         alert("criteo");
+//     }
+//     if (text.includes("googletagmanager")) {
+//         alert("Google Tag Manager");
+//     }
+// }
 
+function detect(text) {
+    if (text.includes("optimizely")) {
+        alert("optimizely found")
+    }
+    if (text.includes("doubleclick")) {
+        alert("doubleclick found")
+    }
+    if (text.includes("salesforce")) {
+        alert("salesforce found")
+    }
+    if (text.includes("taboola")) {
+        alert("taboola found")
+    }
+
+}
 
 function query(i, activeTab) {
     chrome.tabs.executeScript(activeTab.id, {code: "document.scripts[" + i + "].src;"}, function (result) {
