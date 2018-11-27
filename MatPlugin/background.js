@@ -1,6 +1,14 @@
 var string = "URLS:\n\n";
 
-
+chrome.webRequest.onCompleted.addListener(
+    function(details) {
+        var thisUrl = details.url;
+        //alert(thisUrl);
+        string = string + thisUrl + "\n\n";
+    },
+    {urls: ["<all_urls>"]},
+    ["responseHeaders"]
+);
 
 /*chrome.browserAction.onClicked.addListener(function(tab) {
     alert("popup");
@@ -12,15 +20,5 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 });*/
 
 chrome.extension.onConnect.addListener(function(port) {
-        chrome.webRequest.onCompleted.addListener(
-            function(details) {
-                var thisUrl = details.url;
-                //alert(thisUrl);
-                string = string + thisUrl + "\n\n";
-                alert("send" + string);
-                port.postMessage(string);
-            },
-            {urls: ["<all_urls>"]},
-            ["responseHeaders"]
-        );
- })
+    port.postMessage(string);
+});

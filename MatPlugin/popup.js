@@ -9,6 +9,5 @@ var port = chrome.extension.connect({
 });
 
 port.onMessage.addListener(function(msg) {
-    alert(msg);
     document.getElementById("textBox").innerText = msg;
 });
