@@ -1,0 +1,13 @@
+{
+  "name": "MatPlugin",
+  "version": "1.0",
+  "manifest_version": 2,
+  "browser_action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "scripts": ["popup.js"],
+    "persistent": true
+  },
+  "permissions": ["<all_urls>", "tabs", "webRequest"]
+}
