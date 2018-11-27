@@ -1,18 +1,14 @@
-var string = "URLS:\n\n";
 
-document.addEventListener(
-    "DOMContentLoaded",
-    function() {
-      document.getElementById("welcomeBox").innerText = "Changed.";
-    }
-);
+/*chrome.runtime.onMessage.addListener(function(request, sender, response) {
+    alert("message");
+    document.getElementById("textBox").innerText = request.result;
 
-chrome.webRequest.onCompleted.addListener(
-    function(details) {
-        var thisUrl = details.url;
-        string = string + thisUrl + "\n\n";
-        document.getElementById("textBox").innerText = string;
-    },
-    {urls: ["<all_urls>"]},
-    ["responseHeaders"]
-);
+});*/
+var port = chrome.extension.connect({
+    name: "Sample Communication"
+});
+
+port.onMessage.addListener(function(msg) {
+    alert(msg);
+    document.getElementById("textBox").innerText = msg;
+});
