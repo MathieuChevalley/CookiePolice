@@ -1,0 +1,35 @@
+Tracker, Regex, Type (2 characters), Parent (all lower)
+Amazon Associates, amazon-adsystem.com, ad, amazon
+DoubleClick, doubleclick.net, ad, doubleclick
+Criteo, criteo.net, ad, criteo
+Bing Ads, bat.bing.com, ad, bing
+Adobe Test & Target, omtrdc.net, ad, adobe
+Google AdWords Conversion, googleadservices.com, ad, google
+DoubleClick Floodlight, fls.doubleclick.net, ad, doubleclick
+Adobe Audience Manager, demdex.net, ad, adobe
+Aggregate Knowledge, agkn.com, ad, aggregateknowledge
+ATG Recommendations, atgscvs.com, ad, atgrecommendations
+Drawbridge, adsymptotic.com, ad, drawbridge
+Twitter Advertising, ads-twitter.com, ad, twitter
+Digital Window, dwin1.com, ad, digitalwindow
+Facebook Custom Audience, facebook.com/tr, ad, facebook
+Google Dynamic Remarketing, googleads.g.doubleclick.net, ad, google
+Yahoo DOT tag, yimg.com, ad, yahoo
+Twitter Conversion Tracking, t.co/i/adsct, ad, twitter
+Snapchat For Business, sc-static.net, ad, snapchat
+iGoDigital, igodigital.com, cu, igodigital
+ShopRunner, .shoprunner.com, cu, shoprunner
+Google Tag Manager, googletagmanager.com, es, google
+Adobe Dynamic Tag Management, .adobedtm.com, es, adobe
+Truste Consent, .truste.com, es, trusteconsent
+Google Analytics, google-analytics.com, an, google
+Yahoo Analytics, analytics.yahoo.com, an, yahoo
+New Relic, bam.nr-data.net, an, newrelic
+Session Cam, ws.sessioncam.com, an, sessioncam
+Sidecar, getsidecar.com/, an, sidecar
+SOASTA mPulse, c.go-mpulse.com, an, soastampulse
+Twitter Analytics, analytics.twitter.com, an, twitter
+Pinterest Conversion Tracker, s.pinimg.com, an, pinterest
+GA Audiences, ga-audiences?, an, google
+Facebook Connect, connect.facebook.net, so, facebook
+Pinterest, ct.pinterest.com, so, pinterest
