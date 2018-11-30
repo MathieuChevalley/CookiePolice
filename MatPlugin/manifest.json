@@ -9,5 +9,6 @@
     "scripts": ["background.js"],
     "persistent": true
   },
+  "web_accessible_resources": ["csvjson.json"],
   "permissions": ["<all_urls>", "tabs", "webRequest"]
 }
