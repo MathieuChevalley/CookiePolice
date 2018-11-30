@@ -108,16 +108,22 @@
 			"trackerParent": "criteo"
 		},
 		{
-			"trackerName": "Datalogix",
-			"trackerPattern": "nexac.com",
-			"trackerType": "ad",
-			"trackerParent": "datalogix"
-		},
-		{
 			"trackerName": "DataXu",
 			"trackerPattern": "w55c.net",
 			"trackerType": "ad",
 			"trackerParent": "dataxu"
+		},
+		{
+			"trackerName": "Webtrends",
+			"trackerPattern": "webtrendslive.com",
+			"trackerType": "an",
+			"trackerParent": "webtrends"
+		},
+		{
+			"trackerName": "Exactag",
+			"trackerPattern": "exactag.com",
+			"trackerType": "an",
+			"trackerParent": "exactag"
 		},
 		{
 			"trackerName": "Demandbase",
