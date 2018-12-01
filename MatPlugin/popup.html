@@ -1,12 +1,29 @@
 <!DOCTYPE html>
-<html style=''>
+<html>
 <head>
-<script src='popup.js'></script>
+<script src="popup.js"></script>
+<style>
+    h1 {
+        font-size: 30px;
+    }
+
+    h3 {
+        font-size: 16px;
+    }
+
+    h4 {
+        font-size: 14px;
+        font-weight: normal;
+    }
+</style>
 </head>
-<body style="width:400px;">
-<div id='welcomeHeader' style="color:peru;"><h1>Cookie Police v.1.0.0</h1></div>
-<p>Refresh the page to update the plug-in.</p>
+<body style="width:450px;">
+<div id="welcomeHeader" style="color:#00A2FF;"><img src="banner.png" alt="Banner" width="300px">
+</div>
+<h4><b>Instruction:</b> Reload the page to start page analysis.<br></h4>
+<h3 id="urlHeader"></h3>
 <h4 id="urlBox"></h4>
+<h3 id="scoreHeader"></h3>
 <h1 id="scoreBox"></h1>
 <h3 id="categoryHeader"></h3>
 <h4 id="categoryBox"></h4>

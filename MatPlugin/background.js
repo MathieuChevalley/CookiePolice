@@ -9,8 +9,8 @@ const ANTI_REQUISITE_MULTIPLIER = 1.5;
 const GOOD_BOUNDARY = 15;
 const BAD_BOUNDARY = 50;
 const GOOD_COLOR = "#32CD32";
-const OKAY_COLOR = "#FF7F50";
-const BAD_COLOR = "#000000";
+const BAD_COLOR = "#DC143C";
+const OKAY_COLOR = "#000000";
 
 var trackerList = [];
 var trackerTypeList = [];
@@ -31,6 +31,7 @@ var trackerScore = 0;
 var pageUrl = "https://...";
 var thisCategory = "None";
 var thisPerformance = "Better / Worse";
+var status = "";
 
 var ADVERTISING_SCORE = 3;
 var ANALYTICS_SCORE = 7;
@@ -42,15 +43,19 @@ var COMMENTS_SCORE = 2;
 var ESSENTIAL_SCORE = 2;
 var SESSION_REPLAY_SCORE = 15;
 
-
-importTrackers(TRACKER_LIST_FILE);
-importWebCategory(CATEGORIES_FILE);
-importControlScores(CONTROL_SCORE_FILE);
-
 // Listens for page reloads or change of url in the implicated tab
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
     if (changeInfo.url || changeInfo.status === "loading") {
+        categories = new Object();
+        allTrackers = new Object();
+        controlScores = new Object();
+
+        importTrackers(TRACKER_LIST_FILE);
+        importWebCategory(CATEGORIES_FILE);
+        importControlScores(CONTROL_SCORE_FILE);
+
         string = "";
+        status = "";
         trackerDict = new Object;
         companyDict = new Object;
         trackerList = [];
@@ -83,9 +88,9 @@ chrome.webRequest.onSendHeaders.addListener(
 
         chrome.browserAction.setBadgeText({text: totalScore.toString()});
 
-        if (totalScore <= GOOD_BOUNDARY) {
+        if (status == "better" || totalScore == 0) {
             chrome.browserAction.setBadgeBackgroundColor({color: GOOD_COLOR});
-        } else if (totalScore > BAD_BOUNDARY) {
+        } else if (status == "worse") {
             chrome.browserAction.setBadgeBackgroundColor({color: BAD_COLOR});
         } else {
             chrome.browserAction.setBadgeBackgroundColor({color: OKAY_COLOR});
@@ -395,8 +400,10 @@ function checkScore(cat, thisUrl, score) {
     }
 
     if (better > worse) {
+        status = "better";
         return parseInt(better / totalInCategory * 100);
     } else {
+        status = "worse";
         return parseInt(worse / totalInCategory * -100);
     }
 }
