@@ -1,10 +1,10 @@
 {
 	"List": [{
-			"trackerName": "AddThis",
-			"trackerPattern": "addthis.com/e",
-			"trackerType": "ad",
-			"trackerParent": "addthis"
-		},
+		"trackerName": "AddThis",
+		"trackerPattern": "addthis.com/e",
+		"trackerType": "ad",
+		"trackerParent": "addthis"
+	},
 		{
 			"trackerName": "Adobe Test & Target",
 			"trackerPattern": "omtrdc.net",
@@ -18,6 +18,30 @@
 			"trackerParent": "adobe"
 		},
 		{
+			"trackerName": "Celtra",
+			"trackerPattern": "celtra.com",
+			"trackerType": "av",
+			"trackerParent": "celtra"
+		},
+		{
+			"trackerName": "Bazaarvoice",
+			"trackerPattern": "bazaarvoice.com",
+			"trackerType": "cu",
+			"trackerParent": "bazaarvoice"
+		},
+		{
+			"trackerName": "Blue Triangle",
+			"trackerPattern": "btttag.com",
+			"trackerType": "an",
+			"trackerParent": "blue triangle"
+		},
+		{
+			"trackerName": "AgilOne",
+			"trackerPattern": "agilone.com",
+			"trackerType": "an",
+			"trackerParent": "agilone"
+		},
+		{
 			"trackerName": "Adobe Audience Manager",
 			"trackerPattern": "everesttech.net",
 			"trackerType": "ad",
@@ -28,6 +52,36 @@
 			"trackerPattern": "d.adroll.com",
 			"trackerType": "ad",
 			"trackerParent": "adroll"
+		},
+		{
+			"trackerName": "AT Internet",
+			"trackerPattern": "ati-host.net",
+			"trackerType": "an",
+			"trackerParent": "at internet"
+		},
+		{
+			"trackerName": "Tinypass",
+			"trackerPattern": "tinypass.com",
+			"trackerType": "es",
+			"trackerParent": "tinypass"
+		},
+		{
+			"trackerName": "Maru-EDU",
+			"trackerPattern": "edigitalsurvey.com",
+			"trackerType": "cu",
+			"trackerParent": "maru-edu"
+		},
+		{
+			"trackerName": "Grapeshot",
+			"trackerPattern": "gscontxt.net",
+			"trackerType": "ad",
+			"trackerParent": "grapeshot"
+		},
+		{
+			"trackerName": "Effective Measure",
+			"trackerPattern": "effectivemeasure.net",
+			"trackerType": "ad",
+			"trackerParent": "effective measure"
 		},
 		{
 			"trackerName": "Aggregate Knowledge",
@@ -60,6 +114,36 @@
 			"trackerParent": "atlas"
 		},
 		{
+			"trackerName": "cXense",
+			"trackerPattern": "cxense.com",
+			"trackerType": "ad",
+			"trackerParent": "cxense"
+		},
+		{
+			"trackerName": "SMART AdServer",
+			"trackerPattern": "smartadserver.com",
+			"trackerType": "ad",
+			"trackerParent": "smart adserver"
+		},
+		{
+			"trackerName": "TV Squared",
+			"trackerPattern": "tvsquared.com",
+			"trackerType": "ad",
+			"trackerParent": "tv squared"
+		},
+		{
+			"trackerName": "Unruly Media",
+			"trackerPattern": "unrulymedia.com",
+			"trackerType": "ad",
+			"trackerParent": "unruly media"
+		},
+		{
+			"trackerName": "Nanigans",
+			"trackerPattern": "nanigans.com",
+			"trackerType": "ad",
+			"trackerParent": "nanigans"
+		},
+		{
 			"trackerName": "Beeswax",
 			"trackerPattern": "bidr.io",
 			"trackerType": "ad",
@@ -70,6 +154,12 @@
 			"trackerPattern": "x.bidswitch.net",
 			"trackerType": "ad",
 			"trackerParent": "bidswitch"
+		},
+		{
+			"trackerName": "Bidtellect",
+			"trackerPattern": "bttrack.com",
+			"trackerType": "ad",
+			"trackerParent": "bidtellect"
 		},
 		{
 			"trackerName": "Bing Ads",
@@ -245,7 +335,7 @@
 			"trackerType": "ad",
 			"trackerParent": "google"
 		},
-    {
+		{
 			"trackerName": "Google Tag Manager",
 			"trackerPattern": "googletagservices.com/dcm",
 			"trackerType": "es",
@@ -335,7 +425,7 @@
 			"trackerType": "ad",
 			"trackerParent": "lotame"
 		},
-    {
+		{
 			"trackerName": "Signal",
 			"trackerPattern": "thebrighttag.com",
 			"trackerType": "ad",
@@ -406,6 +496,42 @@
 			"trackerPattern": "quantserve.com",
 			"trackerType": "ad",
 			"trackerParent": "quantcast"
+		},
+		{
+			"trackerName": "Monetate",
+			"trackerPattern": "monetate.net",
+			"trackerType": "an",
+			"trackerParent": "monetate"
+		},
+		{
+			"trackerName": "PulsePoint",
+			"trackerPattern": "contextweb.com",
+			"trackerType": "ad",
+			"trackerParent": "pulsepoint"
+		},
+		{
+			"trackerName": "Cquotient",
+			"trackerPattern": "cquotient.com",
+			"trackerType": "ad",
+			"trackerParent": "cquotient"
+		},
+		{
+			"trackerName": "Avant Metrics",
+			"trackerPattern": "avmws.com",
+			"trackerType": "an",
+			"trackerParent": "avant metrics"
+		},
+		{
+			"trackerName": "Yotpo",
+			"trackerPattern": "yotpo.com",
+			"trackerType": "co",
+			"trackerParent": "yotpo"
+		},
+		{
+			"trackerName": "Quantum Metric Tracker",
+			"trackerPattern": "quantummetric.com",
+			"trackerType": "ad",
+			"trackerParent": "quantum metric"
 		},
 		{
 			"trackerName": "Research Now",
@@ -731,7 +857,7 @@
 			"trackerType": "cu",
 			"trackerParent": "gigya"
 		},
-    {
+		{
 			"trackerName": "Gigya",
 			"trackerPattern": "gigya.com/gs",
 			"trackerType": "an",
@@ -875,71 +1001,77 @@
 			"trackerType": "so",
 			"trackerParent": "twitter"
 		},
-    {
+		{
 			"trackerName": "sovrn",
 			"trackerPattern": "ap.lijit.com",
 			"trackerType": "ad",
 			"trackerParent": "sovrn"
 		},
-    {
+		{
 			"trackerName": "Advertising.com",
 			"trackerPattern": "pixel.advertising.com",
 			"trackerType": "ad",
 			"trackerParent": "aol"
 		},
-    {
+		{
 			"trackerName": "gumgum",
 			"trackerPattern": "va-g2.gumgum.com",
 			"trackerType": "ad",
 			"trackerParent": "gumgum"
 		},
-    {
+		{
 			"trackerName": "Dotomi",
 			"trackerPattern": "dotomi.com",
 			"trackerType": "ad",
 			"trackerParent": "dotomi"
 		},
-    {
+		{
 			"trackerName": "Dotomi",
 			"trackerPattern": "dotomi.com",
 			"trackerType": "ad",
 			"trackerParent": "dotomi"
 		},
-    {
+		{
 			"trackerName": "Clearstream.TV",
 			"trackerPattern": "clrstm.com",
 			"trackerType": "ad",
 			"trackerParent": "clearsteam"
 		},
-    {
+		{
 			"trackerName": "SalesFUSION",
 			"trackerPattern": "msgapp.com",
 			"trackerType": "ad",
 			"trackerParent": "salesfusion"
 		},
-    {
+		{
 			"trackerName": "Nativo",
 			"trackerPattern": "postrelease.com",
 			"trackerType": "ad",
 			"trackerParent": "nativo"
 		},
-    {
+		{
 			"trackerName": "Google Ads Measurement",
 			"trackerPattern": "google.com/ads/measurement",
 			"trackerType": "ad",
 			"trackerParent": "google"
 		},
-    {
+		{
 			"trackerName": "CivicScience",
 			"trackerPattern": "civicscience.com",
 			"trackerType": "ad",
 			"trackerParent": "civicscience"
 		},
-    {
+		{
 			"trackerName": "AdForm",
 			"trackerPattern": "adform.net",
 			"trackerType": "ad",
 			"trackerParent": "adform"
+		},
+		{
+			"trackerName": "Vidora",
+			"trackerPattern": "vidora.com",
+			"trackerType": "av",
+			"trackerParent": "vidora"
 		},
 		{
 			"trackerName": "Twitter Syndication",

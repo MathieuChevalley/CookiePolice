@@ -1,4 +1,9 @@
-const TRACKER_LIST_FILE = "trackerList.json";
+const TRACKER_LIST_FILE = "http://ec2-3-16-90-230.us-east-2.compute.amazonaws.com/get-trackers";
+const CATEGORIES_FILE = "http://ec2-3-16-90-230.us-east-2.compute.amazonaws.com/get-categories";
+const CONTROL_SCORE_FILE = "http://ec2-3-16-90-230.us-east-2.compute.amazonaws.com/get-database";
+const CONTROL_SCORE_UPDATE = "http://ec2-3-16-90-230.us-east-2.compute.amazonaws.com/update-database";
+
+
 const SAME_COMPANY_MULTIPLIER = 1;
 const ANTI_REQUISITE_MULTIPLIER = 1.5;
 const GOOD_BOUNDARY = 15;
@@ -6,8 +11,6 @@ const BAD_BOUNDARY = 50;
 const GOOD_COLOR = "#32CD32";
 const OKAY_COLOR = "#FF7F50";
 const BAD_COLOR = "#000000";
-
-const trackerListUrl = chrome.runtime.getURL(TRACKER_LIST_FILE);
 
 var trackerList = [];
 var trackerTypeList = [];
@@ -17,8 +20,8 @@ var string = "";
 
 // Tracker dictionary
 var allTrackers = new Object();
-
-// Dictionary
+var controlScores = new Object();
+var categories = new Object();
 var trackerDict = new Object();
 var companyDict = new Object();
 
@@ -26,6 +29,8 @@ var companyDict = new Object();
 var totalScore = 0;
 var trackerScore = 0;
 var pageUrl = "https://...";
+var thisCategory = "None";
+var thisPerformance = "Better / Worse";
 
 var ADVERTISING_SCORE = 3;
 var ANALYTICS_SCORE = 7;
@@ -35,8 +40,12 @@ var AV_SCORE = 1;
 var ADULT_SCORE = 5;
 var COMMENTS_SCORE = 2;
 var ESSENTIAL_SCORE = 2;
+var SESSION_REPLAY_SCORE = 15;
 
-importTrackers(trackerListUrl);
+
+importTrackers(TRACKER_LIST_FILE);
+importWebCategory(CATEGORIES_FILE);
+importControlScores(CONTROL_SCORE_FILE);
 
 // Listens for page reloads or change of url in the implicated tab
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
@@ -47,9 +56,11 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
         trackerList = [];
         trackerTypeList = [];
         totalScore = 0;
-
-        pageUrl = tab.url;
     }
+
+    pageUrl = tab.url;
+    thisHost = getHostName(pageUrl);
+    thisCategory = getCategory(thisHost);
 
     chrome.extension.onConnect.addListener(function (message) {
         message.postMessage(string);
@@ -67,6 +78,8 @@ chrome.webRequest.onSendHeaders.addListener(
                 trackerList.push(thisTracker.trackerName + " (" + trackerScore + ")");
             }
         }
+
+        thisPerformance = checkScore(thisCategory, thisHost, totalScore);
 
         chrome.browserAction.setBadgeText({text: totalScore.toString()});
 
@@ -274,6 +287,29 @@ function regexChecker(url) {
                     return value;
                 }
             }
+
+            // Session replay
+            if (value.trackerType == "sr") {
+                if (!(value.trackerName in trackerDict)) {
+                    trackerScore = SESSION_REPLAY_SCORE;
+
+                    if (!(value.trackerParent in companyDict)) {
+                        companyDict[value.trackerParent] = 1;
+                    } else {
+                        companyDict[value.trackerParent] += 1;
+                        trackerScore = trackerScore - 1;
+                    }
+
+                    totalScore += trackerScore;
+                    if (!(trackerTypeList.includes("session replay"))) {
+                        trackerTypeList.push("session replay");
+                    }
+
+                    trackerDict[value.trackerName] = 1;
+
+                    return value;
+                }
+            }
         }
     }
 
@@ -282,13 +318,111 @@ function regexChecker(url) {
 
 // Function to import tracker list
 function importTrackers(url) {
-    fetch(url)
-        .then(function(response) {
-            return response.json();
-        })
-        .then(function(json) {
-            for (var i = 0; i < json.List.length; i++) {
-                allTrackers[json.List[i].trackerPattern] = json.List[i];
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", url, false);
+    xhr.send();
+    var response = xhr.responseText;
+    var jsonResponse = JSON.parse(response);
+    for (var i = 0; i < jsonResponse.List.length; i++) {
+        allTrackers[jsonResponse.List[i].trackerPattern] = jsonResponse.List[i];
+    }
+}
+
+// Function to import category
+function importWebCategory(url) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", url, false);
+    xhr.send();
+    var response = xhr.responseText;
+    var jsonResponse = JSON.parse(response);
+    for (var i = 0; i < jsonResponse.List.length; i++) {
+        categories[jsonResponse.List[i].website] = new Object();
+        categories[jsonResponse.List[i].website] = jsonResponse.List[i];
+    }
+}
+
+// Function to import database
+function importControlScores(url) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", url, false);
+    xhr.send();
+    var response = xhr.responseText;
+    var jsonResponse = JSON.parse(response);
+    for (var key in jsonResponse) {
+        if (jsonResponse.hasOwnProperty(key)) {
+            controlScores[key] = new Object();
+            controlScores[key].score = jsonResponse[key].score;
+            controlScores[key].category = jsonResponse[key].category;
+        }
+    }
+}
+
+// Function to check score of website in comparison
+function checkScore(cat, thisUrl, score) {
+    var better = 0;
+    var worse = 0;
+    var totalInCategory = 0;
+
+    if (cat == "null") {
+        return 403;
+    }
+
+    if (!(thisUrl in controlScores)) {
+        if (thisUrl != undefined && thisUrl != "...") {
+            controlScores[thisUrl] = new Object();
+            controlScores[thisUrl].score = score;
+            controlScores[thisUrl].category = cat;
+        }
+    }
+
+    // Loop through all scores
+    for (const [key, value] of Object.entries(controlScores)) {
+        if (value.category == cat) {
+            totalInCategory = totalInCategory + 1;
+            if (score <= value.score) {
+                better = better + 1;
+            } else {
+                worse = worse + 1;
             }
-        });
+
+            if (key == thisUrl && cat != "null") {
+                if (value.score < score) {
+                    value.score = score;
+                    updateDatabase();
+                }
+            }
+        }
+    }
+
+    if (better > worse) {
+        return parseInt(better / totalInCategory * 100);
+    } else {
+        return parseInt(worse / totalInCategory * -100);
+    }
+}
+
+function getCategory(hostName) {
+    if (!(hostName in categories)) {
+        return "null";
+    }
+
+    return categories[hostName].category;
+}
+
+function getHostName(url) {
+    var hostName = (new URL(url)).hostname;
+    return hostName;
+}
+
+function updateDatabase() {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", CONTROL_SCORE_UPDATE, false);
+    xhr.setRequestHeader('content-type', 'application/json');
+    var databaseJsonString = JSON.stringify(controlScores);
+    xhr.send(databaseJsonString);
+    var response = xhr.responseText;
+    var jsonResponse = JSON.parse(response);
+    for (var i = 0; i < jsonResponse.List.length; i++) {
+        controlScores[jsonResponse.List[i].website] = jsonResponse.List[i];
+    }
 }

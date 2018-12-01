@@ -49,11 +49,31 @@ message.onMessage.addListener(function(msg) {
         types = types + listOfTypes[i].toUpperCase() + "\n";
     }
 
+    var category = background.thisCategory.toUpperCase();
+    if (category == "NULL") {
+        category = "No category for this website";
+    }
+
+    var performanceAnalyis = "Analyzing...";
+    var performance = background.thisPerformance;
+    if (performance < 0) {
+        performanceAnalyis = "This website uses more trackers than what " + (performance * -1).toString() + "% of other " + category + " websites.";
+    } else if (performance > 0 && performance <= 100) {
+        performanceAnalyis = "This website uses less trackers than what " + (performance).toString() + "% of other " + category + " websites.";
+    } else {
+        performanceAnalyis = "This website needs to be categorized first";
+    }
+
     document.getElementById("welcomeHeader").style.color = HEADER_COLOR;
     document.getElementById("typeHeader").style.color = HEADER_COLOR;
+    document.getElementById("performanceHeader").style.color = HEADER_COLOR;
+    document.getElementById("categoryHeader").style.color = HEADER_COLOR;
     document.getElementById("companiesHeader").style.color = HEADER_COLOR;
     document.getElementById("trackerHeader").style.color = HEADER_COLOR;
-
+    document.getElementById("performanceHeader").innerText = "Performance";
+    document.getElementById("performanceBox").innerText = performanceAnalyis;
+    document.getElementById("categoryHeader").innerText = "Website category";
+    document.getElementById("categoryBox").innerText = category;
     document.getElementById("typeHeader").innerText = "Types (" + listOfTypes.length.toString() + ")";
     document.getElementById("typeBox").innerText = types;
     document.getElementById("companiesHeader").innerText = "Companies (" + listOfCompaniesList.length.toString() + ")";

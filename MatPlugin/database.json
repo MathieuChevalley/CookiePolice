@@ -1,0 +1,28 @@
+{
+  "List": [{
+    "category": "e-commerce",
+    "website": "www.underarmour.com",
+    "score": 10
+  },
+    {
+      "category": "e-commerce",
+      "website": "www.adidas.com",
+      "score": 10
+    },
+    {
+      "category": "e-commerce",
+      "website": "shop.lululemon.com",
+      "score": 10
+    },
+    {
+      "category": "e-commerce",
+      "website": "www.patagonia.com",
+      "score": 10
+    },
+    {
+      "category": "e-commerce",
+      "website": "www.nike.com",
+      "score": 10
+    }
+  ]
+}

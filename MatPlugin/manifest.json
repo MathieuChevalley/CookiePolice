@@ -1,5 +1,5 @@
 {
-  "name": "MatPlugin",
+  "name": "CookiePolice",
   "version": "1.0",
   "manifest_version": 2,
   "browser_action": {
@@ -10,5 +10,5 @@
     "persistent": true
   },
   "web_accessible_resources": ["csvjson.json"],
-  "permissions": ["<all_urls>", "tabs", "webRequest"]
+  "permissions": ["<all_urls>", "tabs", "storage", "webRequest"]
 }
