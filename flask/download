@@ -1,0 +1,4 @@
+scp -i cookiepolice.pem ubuntu@3.16.90.230:~/categories.json .
+scp -i cookiepolice.pem ubuntu@3.16.90.230:~/database.json .
+scp -i cookiepolice.pem ubuntu@3.16.90.230:~/trackerList.json .
+
