@@ -9,6 +9,8 @@
     "scripts": ["background.js"],
     "persistent": true
   },
-  "web_accessible_resources": ["csvjson.json"],
-  "permissions": ["<all_urls>", "tabs", "storage", "webRequest"]
+  "icons": { "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png" },
+  "permissions": [ "<all_urls>", "tabs", "storage", "webRequest" ]
 }
