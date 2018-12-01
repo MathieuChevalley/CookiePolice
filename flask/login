@@ -1,0 +1,1 @@
+ssh -i cookiepolice.pem ubuntu@3.16.90.230

@@ -1,0 +1,933 @@
+{
+	"List": [{
+		"trackerName": "AddThis",
+		"trackerPattern": "addthis.com/e",
+		"trackerType": "ad",
+		"trackerParent": "addthis"
+	}, {
+		"trackerName": "Adobe Test & Target",
+		"trackerPattern": "omtrdc.net",
+		"trackerType": "ad",
+		"trackerParent": "adobe"
+	}, {
+		"trackerName": "Adobe Audience Manager",
+		"trackerPattern": "demdex.net",
+		"trackerType": "ad",
+		"trackerParent": "adobe"
+	}, {
+		"trackerName": "Celtra",
+		"trackerPattern": "celtra.com",
+		"trackerType": "av",
+		"trackerParent": "celtra"
+	}, {
+		"trackerName": "Bazaarvoice",
+		"trackerPattern": "bazaarvoice.com",
+		"trackerType": "cu",
+		"trackerParent": "bazaarvoice"
+	}, {
+		"trackerName": "Blue Triangle",
+		"trackerPattern": "btttag.com",
+		"trackerType": "an",
+		"trackerParent": "blue triangle"
+	}, {
+		"trackerName": "AgilOne",
+		"trackerPattern": "agilone.com",
+		"trackerType": "an",
+		"trackerParent": "agilone"
+	}, {
+		"trackerName": "Adobe Audience Manager",
+		"trackerPattern": "everesttech.net",
+		"trackerType": "ad",
+		"trackerParent": "adobe"
+	}, {
+		"trackerName": "AdRoll",
+		"trackerPattern": "d.adroll.com",
+		"trackerType": "ad",
+		"trackerParent": "adroll"
+	}, {
+		"trackerName": "AT Internet",
+		"trackerPattern": "ati-host.net",
+		"trackerType": "an",
+		"trackerParent": "at internet"
+	}, {
+		"trackerName": "Tinypass",
+		"trackerPattern": "tinypass.com",
+		"trackerType": "es",
+		"trackerParent": "tinypass"
+	}, {
+		"trackerName": "Maru-EDU",
+		"trackerPattern": "edigitalsurvey.com",
+		"trackerType": "cu",
+		"trackerParent": "maru-edu"
+	}, {
+		"trackerName": "Grapeshot",
+		"trackerPattern": "gscontxt.net",
+		"trackerType": "ad",
+		"trackerParent": "grapeshot"
+	}, {
+		"trackerName": "Effective Measure",
+		"trackerPattern": "effectivemeasure.net",
+		"trackerType": "ad",
+		"trackerParent": "effective measure"
+	}, {
+		"trackerName": "Aggregate Knowledge",
+		"trackerPattern": "agkn.com",
+		"trackerType": "ad",
+		"trackerParent": "aggregate knowledge"
+	}, {
+		"trackerName": "Amazon Associates",
+		"trackerPattern": "amazon-adsystem.com",
+		"trackerType": "ad",
+		"trackerParent": "amazon"
+	}, {
+		"trackerName": "AppNexus",
+		"trackerPattern": "adnxs.com",
+		"trackerType": "ad",
+		"trackerParent": "appnexus"
+	}, {
+		"trackerName": "AppDynamics",
+		"trackerPattern": "appdynamics.com",
+		"trackerType": "an",
+		"trackerParent": "appdynamics"
+	}, {
+		"trackerName": "ATG Recommendations",
+		"trackerPattern": "atgsvcs.com",
+		"trackerType": "ad",
+		"trackerParent": "atg recommendations"
+	}, {
+		"trackerName": "Atlas",
+		"trackerPattern": "cx.atdmt.com",
+		"trackerType": "ad",
+		"trackerParent": "atlas"
+	}, {
+		"trackerName": "cXense",
+		"trackerPattern": "cxense.com",
+		"trackerType": "ad",
+		"trackerParent": "cxense"
+	}, {
+		"trackerName": "SMART AdServer",
+		"trackerPattern": "smartadserver.com",
+		"trackerType": "ad",
+		"trackerParent": "smart adserver"
+	}, {
+		"trackerName": "TV Squared",
+		"trackerPattern": "tvsquared.com",
+		"trackerType": "ad",
+		"trackerParent": "tv squared"
+	}, {
+		"trackerName": "Unruly Media",
+		"trackerPattern": "unrulymedia.com",
+		"trackerType": "ad",
+		"trackerParent": "unruly media"
+	}, {
+		"trackerName": "Nanigans",
+		"trackerPattern": "nanigans.com",
+		"trackerType": "ad",
+		"trackerParent": "nanigans"
+	}, {
+		"trackerName": "Beeswax",
+		"trackerPattern": "bidr.io",
+		"trackerType": "ad",
+		"trackerParent": "beeswax"
+	}, {
+		"trackerName": "BidSwitch",
+		"trackerPattern": "x.bidswitch.net",
+		"trackerType": "ad",
+		"trackerParent": "bidswitch"
+	}, {
+		"trackerName": "Bidtellect",
+		"trackerPattern": "bttrack.com",
+		"trackerType": "ad",
+		"trackerParent": "bidtellect"
+	}, {
+		"trackerName": "Bing Ads",
+		"trackerPattern": "bat.bing.com",
+		"trackerType": "ad",
+		"trackerParent": "bing"
+	}, {
+		"trackerName": "Bizible",
+		"trackerPattern": "cdn.bizible.com",
+		"trackerType": "ad",
+		"trackerParent": "bizible"
+	}, {
+		"trackerName": "BlueKai",
+		"trackerPattern": "tags.bluekai.com",
+		"trackerType": "ad",
+		"trackerParent": "bluekai"
+	}, {
+		"trackerName": "Bounce Exchange",
+		"trackerPattern": "bounceexchange.com",
+		"trackerType": "ad",
+		"trackerParent": "bounce exchange"
+	}, {
+		"trackerName": "Conversant",
+		"trackerPattern": "adfarm.mediaplex.com",
+		"trackerType": "ad",
+		"trackerParent": "conversant"
+	}, {
+		"trackerName": "Criteo",
+		"trackerPattern": "static.criteo.net",
+		"trackerType": "ad",
+		"trackerParent": "criteo"
+	}, {
+		"trackerName": "DataXu",
+		"trackerPattern": "w55c.net",
+		"trackerType": "ad",
+		"trackerParent": "dataxu"
+	}, {
+		"trackerName": "LivePerson",
+		"trackerPattern": "liveperson.com",
+		"trackerType": "cu",
+		"trackerParent": "liveperson"
+	}, {
+		"trackerName": "LivePerson",
+		"trackerPattern": "liveperson.net",
+		"trackerType": "cu",
+		"trackerParent": "liveperson"
+	}, {
+		"trackerName": "Webtrends",
+		"trackerPattern": "webtrendslive.com",
+		"trackerType": "an",
+		"trackerParent": "webtrends"
+	}, {
+		"trackerName": "Exactag",
+		"trackerPattern": "exactag.com",
+		"trackerType": "an",
+		"trackerParent": "exactag"
+	}, {
+		"trackerName": "Demandbase",
+		"trackerPattern": "api.demandbase.com",
+		"trackerType": "ad",
+		"trackerParent": "demandbase"
+	}, {
+		"trackerName": "Demandbase",
+		"trackerPattern": "company-target.com",
+		"trackerType": "ad",
+		"trackerParent": "demandbase"
+	}, {
+		"trackerName": "Digital Window",
+		"trackerPattern": "dwin1.com",
+		"trackerType": "ad",
+		"trackerParent": "digital window"
+	}, {
+		"trackerName": "DoubleClick",
+		"trackerPattern": "ad.doubleclick.net",
+		"trackerType": "ad",
+		"trackerParent": "doubleclick"
+	}, {
+		"trackerName": "DoubleClick",
+		"trackerPattern": "stats.g.doubleclick.net",
+		"trackerType": "ad",
+		"trackerParent": "doubleclick"
+	}, {
+		"trackerName": "DoubleClick",
+		"trackerPattern": "pubads.g.doubleclick.net",
+		"trackerType": "ad",
+		"trackerParent": "doubleclick"
+	}, {
+		"trackerName": "DoubleClick Floodlight",
+		"trackerPattern": "fls.doubleclick.net",
+		"trackerType": "ad",
+		"trackerParent": "doubleclick"
+	}, {
+		"trackerName": "DoubleClick Bid Manager",
+		"trackerPattern": "bid.g.doubleclick.net",
+		"trackerType": "ad",
+		"trackerParent": "doubleclick"
+	}, {
+		"trackerName": "DoubleClick Ad Exchange-Business",
+		"trackerPattern": "googleadservices.com/pagad",
+		"trackerType": "ad",
+		"trackerParent": "doubleclick"
+	}, {
+		"trackerName": "DoubleClick",
+		"trackerPattern": "pubads.g.doubleclick.net",
+		"trackerType": "ad",
+		"trackerParent": "doubleclick"
+	}, {
+		"trackerName": "DoubleClick",
+		"trackerPattern": "googleads.g.doubleclick.net",
+		"trackerType": "ad",
+		"trackerParent": "doubleclick"
+	}, {
+		"trackerName": "DoubleVerify",
+		"trackerPattern": "cdn.doubleverify.com",
+		"trackerType": "ad",
+		"trackerParent": "doubleverify"
+	}, {
+		"trackerName": "Drawbridge",
+		"trackerPattern": "adsymptotic.com",
+		"trackerType": "ad",
+		"trackerParent": "drawbridge"
+	}, {
+		"trackerName": "EbayStats",
+		"trackerPattern": "rover.ebay.com",
+		"trackerType": "ad",
+		"trackerParent": "ebay"
+	}, {
+		"trackerName": "Exelate",
+		"trackerPattern": "exelator.com",
+		"trackerType": "ad",
+		"trackerParent": "exelate"
+	}, {
+		"trackerName": "Facebook Custom Audience",
+		"trackerPattern": "facebook.com/tr",
+		"trackerType": "ad",
+		"trackerParent": "facebook"
+	}, {
+		"trackerName": "Flashtalking",
+		"trackerPattern": "servedby.flashtalking.com",
+		"trackerType": "ad",
+		"trackerParent": "flashtalking"
+	}, {
+		"trackerName": "Google AdWords Conversion",
+		"trackerPattern": "googleadservices.com",
+		"trackerType": "ad",
+		"trackerParent": "google"
+	}, {
+		"trackerName": "Google Dynamic Remarketing",
+		"trackerPattern": "googleads.g.doubleclick.net",
+		"trackerType": "ad",
+		"trackerParent": "google"
+	}, {
+		"trackerName": "Google Publisher Tags",
+		"trackerPattern": "googletagservices.com/tag",
+		"trackerType": "ad",
+		"trackerParent": "google"
+	}, {
+		"trackerName": "Google Tag Manager",
+		"trackerPattern": "googletagservices.com/dcm",
+		"trackerType": "es",
+		"trackerParent": "google"
+	}, {
+		"trackerName": "Google Adsense",
+		"trackerPattern": "tpc.googlesyndication.com",
+		"trackerType": "ad",
+		"trackerParent": "google"
+	}, {
+		"trackerName": "Google Adsense",
+		"trackerPattern": "pagead2.googlesyndication.com/pagead",
+		"trackerType": "ad",
+		"trackerParent": "google"
+	}, {
+		"trackerName": "Google Safeframe",
+		"trackerPattern": "tpc.googlesyndication.com/safeframe",
+		"trackerType": "ad",
+		"trackerParent": "google"
+	}, {
+		"trackerName": "Google IMA",
+		"trackerPattern": "imasdk.googleapis.com",
+		"trackerType": "ad",
+		"trackerParent": "google"
+	}, {
+		"trackerName": "Idio",
+		"trackerPattern": "s.idio.co",
+		"trackerType": "ad",
+		"trackerParent": "idio"
+	}, {
+		"trackerName": "Index Exchange",
+		"trackerPattern": "casalemedia.com",
+		"trackerType": "ad",
+		"trackerParent": "index exchange"
+	}, {
+		"trackerName": "Integral Ad Science",
+		"trackerPattern": "adsafeprotected.com",
+		"trackerType": "ad",
+		"trackerParent": "integral ad science"
+	}, {
+		"trackerName": "Krux Digital",
+		"trackerPattern": "krxd.net",
+		"trackerType": "ad",
+		"trackerParent": "krux digital"
+	}, {
+		"trackerName": "LinkedIn Ads",
+		"trackerPattern": "ads.linkedin.com",
+		"trackerType": "ad",
+		"trackerParent": "linkedin"
+	}, {
+		"trackerName": "LinkedIn Marketing Solutions",
+		"trackerPattern": "bizographics.com",
+		"trackerType": "ad",
+		"trackerParent": "linkedin"
+	}, {
+		"trackerName": "LinkShare",
+		"trackerPattern": "rd.linksynergy.com",
+		"trackerType": "ad",
+		"trackerParent": "linkshare"
+	}, {
+		"trackerName": "Livefyre",
+		"trackerPattern": "cdn.livefyre.com",
+		"trackerType": "co",
+		"trackerParent": "livefyre"
+	}, {
+		"trackerName": "LiveRamp",
+		"trackerPattern": "rlcdn.com",
+		"trackerType": "ad",
+		"trackerParent": "liveramp"
+	}, {
+		"trackerName": "Lotame",
+		"trackerPattern": "crwdcntrl.net",
+		"trackerType": "ad",
+		"trackerParent": "lotame"
+	}, {
+		"trackerName": "Signal",
+		"trackerPattern": "thebrighttag.com",
+		"trackerType": "ad",
+		"trackerParent": "signal"
+	}, {
+		"trackerName": "Marketo",
+		"trackerPattern": "mktoresp.com",
+		"trackerType": "ad",
+		"trackerParent": "marketo"
+	}, {
+		"trackerName": "MathTag",
+		"trackerPattern": "mathtag.com",
+		"trackerType": "ad",
+		"trackerParent": "mathtag"
+	}, {
+		"trackerName": "MediaMath",
+		"trackerPattern": "sync.mathtag.com",
+		"trackerType": "ad",
+		"trackerParent": "mediamath"
+	}, {
+		"trackerName": "Media.net",
+		"trackerPattern": "contextual.media.net",
+		"trackerType": "ad",
+		"trackerParent": "media.net"
+	}, {
+		"trackerName": "Moat",
+		"trackerPattern": "moatads.com",
+		"trackerType": "ad",
+		"trackerParent": "moat"
+	}, {
+		"trackerName": "NetRatings SiteCensus",
+		"trackerPattern": "imrworldwide.com",
+		"trackerType": "ad",
+		"trackerParent": "net ratings"
+	}, {
+		"trackerName": "OpenX",
+		"trackerPattern": "us-u.openx.net",
+		"trackerType": "ad",
+		"trackerParent": "openx"
+	}, {
+		"trackerName": "Outbrain Pixel",
+		"trackerPattern": "amplifypixel.outbrain.com",
+		"trackerType": "ad",
+		"trackerParent": "outbrain"
+	}, {
+		"trackerName": "Outbrain",
+		"trackerPattern": "widgets.outbrain.com",
+		"trackerType": "ad",
+		"trackerParent": "outbrain"
+	}, {
+		"trackerName": "Outbrain Amplify",
+		"trackerPattern": "amplify.outbrain.com",
+		"trackerType": "ad",
+		"trackerParent": "outbrain"
+	}, {
+		"trackerName": "Quantcast",
+		"trackerPattern": "quantserve.com",
+		"trackerType": "ad",
+		"trackerParent": "quantcast"
+	}, {
+		"trackerName": "Monetate",
+		"trackerPattern": "monetate.net",
+		"trackerType": "an",
+		"trackerParent": "monetate"
+	}, {
+		"trackerName": "PulsePoint",
+		"trackerPattern": "contextweb.com",
+		"trackerType": "ad",
+		"trackerParent": "pulsepoint"
+	}, {
+		"trackerName": "Cquotient",
+		"trackerPattern": "cquotient.com",
+		"trackerType": "ad",
+		"trackerParent": "cquotient"
+	}, {
+		"trackerName": "Avant Metrics",
+		"trackerPattern": "avmws.com",
+		"trackerType": "an",
+		"trackerParent": "avant metrics"
+	}, {
+		"trackerName": "Yotpo",
+		"trackerPattern": "yotpo.com",
+		"trackerType": "co",
+		"trackerParent": "yotpo"
+	}, {
+		"trackerName": "Quantum Metric Tracker",
+		"trackerPattern": "quantummetric.com",
+		"trackerType": "ad",
+		"trackerParent": "quantum metric"
+	}, {
+		"trackerName": "Research Now",
+		"trackerPattern": "tag.researchnow.com",
+		"trackerType": "ad",
+		"trackerParent": "researchnow"
+	}, {
+		"trackerName": "Resonate Networks",
+		"trackerPattern": "reson8.com",
+		"trackerType": "ad",
+		"trackerParent": "resonatenetworks"
+	}, {
+		"trackerName": "Rocket Fuel",
+		"trackerPattern": "rfihub.net",
+		"trackerType": "ad",
+		"trackerParent": "rocketfuel"
+	}, {
+		"trackerName": "Rubicon",
+		"trackerPattern": "rubiconproject.com",
+		"trackerType": "ad",
+		"trackerParent": "rubicon"
+	}, {
+		"trackerName": "ShareThis",
+		"trackerPattern": "sharethis.com",
+		"trackerType": "ad",
+		"trackerParent": "sharethis"
+	}, {
+		"trackerName": "ShareThrough",
+		"trackerPattern": "sharethrough.com",
+		"trackerType": "ad",
+		"trackerParent": "sharethrough"
+	}, {
+		"trackerName": "Brightcove Player",
+		"trackerPattern": "brightcove.net",
+		"trackerType": "av",
+		"trackerParent": "brightcove"
+	}, {
+		"trackerName": "Brightcove",
+		"trackerPattern": "brightcove.com",
+		"trackerType": "av",
+		"trackerParent": "brightcove"
+	},{
+		"trackerName": "Qualtrics",
+		"trackerPattern": "qualtrics.com",
+		"trackerType": "an",
+		"trackerParent": "qualtrics"
+	}, {
+		"trackerName": "Sizmek",
+		"trackerPattern": "serving-sys.com",
+		"trackerType": "ad",
+		"trackerParent": "sizmek"
+	}, {
+		"trackerName": "Snapchat For Business",
+		"trackerPattern": "sc-static.net",
+		"trackerType": "ad",
+		"trackerParent": "snapchat"
+	}, {
+		"trackerName": "SpotXchange",
+		"trackerPattern": "search.spotxchange.com/partner",
+		"trackerType": "ad",
+		"trackerParent": "spotxchange"
+	}, {
+		"trackerName": "Taboola",
+		"trackerPattern": "trc.taboola.com",
+		"trackerType": "ad",
+		"trackerParent": "taboola"
+	}, {
+		"trackerName": "Tapad",
+		"trackerPattern": "tapestry.tapade.com",
+		"trackerType": "ad",
+		"trackerParent": "tapad"
+	}, {
+		"trackerName": "TradeDesk",
+		"trackerPattern": "adsrvr.org",
+		"trackerType": "ad",
+		"trackerParent": "tradedesk"
+	}, {
+		"trackerName": "trueAnthem",
+		"trackerPattern": "tru.am",
+		"trackerType": "ad",
+		"trackerParent": "trueanthem"
+	}, {
+		"trackerName": "Turn Inc.",
+		"trackerPattern": "ad.turn.com",
+		"trackerType": "ad",
+		"trackerParent": "turninc"
+	}, {
+		"trackerName": "Twitter Advertising",
+		"trackerPattern": "ads-twitter.com",
+		"trackerType": "ad",
+		"trackerParent": "twitter"
+	}, {
+		"trackerName": "Twitter Conversion Tracking",
+		"trackerPattern": "t.co/i/adsct",
+		"trackerType": "ad",
+		"trackerParent": "twitter"
+	}, {
+		"trackerName": "Twitter Advertising",
+		"trackerPattern": "platform.twitter.com",
+		"trackerType": "ad",
+		"trackerParent": "twitter"
+	}, {
+		"trackerName": "VisualDNA",
+		"trackerPattern": "e.visualdna.com",
+		"trackerType": "ad",
+		"trackerParent": "visualdna"
+	}, {
+		"trackerName": "Yahoo DOT tag",
+		"trackerPattern": "s.yimg.com",
+		"trackerType": "ad",
+		"trackerParent": "yahoo"
+	}, {
+		"trackerName": "Yahoo Retargeting",
+		"trackerPattern": "b29.yahoo.co.jp",
+		"trackerType": "ad",
+		"trackerParent": "yahoo"
+	}, {
+		"trackerName": "Yahoo Ad Manager Plus",
+		"trackerPattern": "ybp.yahoo.com",
+		"trackerType": "ad",
+		"trackerParent": "yahoo"
+	}, {
+		"trackerName": "Yahoo Ad Exchange",
+		"trackerPattern": "ads.yahoo.com",
+		"trackerType": "ad",
+		"trackerParent": "yahoo"
+	}, {
+		"trackerName": "Omniture",
+		"trackerPattern": "sc.omtrdc.net",
+		"trackerType": "an",
+		"trackerParent": "adobe"
+	}, {
+		"trackerName": "Akamai Cookie Sync",
+		"trackerPattern": "ak1s.abmr.net",
+		"trackerType": "an",
+		"trackerParent": "akamai"
+	}, {
+		"trackerName": "Amplitude",
+		"trackerPattern": "api.amplitude.com",
+		"trackerType": "an",
+		"trackerParent": "amplitude"
+	}, {
+		"trackerName": "Bombora",
+		"trackerPattern": "ml314.com",
+		"trackerType": "an",
+		"trackerParent": "bombora"
+	}, {
+		"trackerName": "Cedexis",
+		"trackerPattern": "rpt.cedexis.com",
+		"trackerType": "an",
+		"trackerParent": "cedexis"
+	}, {
+		"trackerName": "Cedexis Radar",
+		"trackerPattern": "radar.cedexis.com",
+		"trackerType": "an",
+		"trackerParent": "cedexis"
+	}, {
+		"trackerName": "Chartbeat",
+		"trackerPattern": "chartbeat.com",
+		"trackerType": "an",
+		"trackerParent": "chartbeat"
+	}, {
+		"trackerName": "Chartbeat",
+		"trackerPattern": "chartbeat.net",
+		"trackerType": "an",
+		"trackerParent": "chartbeat"
+	}, {
+		"trackerName": "Clicktale",
+		"trackerPattern": "cdnssl.clicktale.net",
+		"trackerType": "sr",
+		"trackerParent": "clicktale"
+	}, {
+		"trackerName": "ESPN analytics",
+		"trackerPattern": "a.espncdn.com",
+		"trackerType": "an",
+		"trackerParent": "espn"
+	}, {
+		"trackerName": "Google Analytics",
+		"trackerPattern": "google-analytics.com",
+		"trackerType": "an",
+		"trackerParent": "google"
+	}, {
+		"trackerName": "GA Audiences",
+		"trackerPattern": "ga-audiences?",
+		"trackerType": "an",
+		"trackerParent": "google"
+	}, {
+		"trackerName": "Hotjar",
+		"trackerPattern": "hotjar.com/c",
+		"trackerType": "sr",
+		"trackerParent": "hotjar"
+	}, {
+		"trackerName": "Index Exchange",
+		"trackerPattern": "indexww.com",
+		"trackerType": "an",
+		"trackerParent": "index exchange"
+	}, {
+		"trackerName": "InsightExpress",
+		"trackerPattern": "insightexpressai.com",
+		"trackerType": "an",
+		"trackerParent": "insightexpress"
+	}, {
+		"trackerName": "Kenshoo",
+		"trackerPattern": "xg4ken.com",
+		"trackerType": "an",
+		"trackerParent": "kenshoo"
+	}, {
+		"trackerName": "LinkedIn Analytics",
+		"trackerPattern": "licdn.com",
+		"trackerType": "an",
+		"trackerParent": "linkedin"
+	}, {
+		"trackerName": "New Relic",
+		"trackerPattern": "bam.nr-data.net",
+		"trackerType": "an",
+		"trackerParent": "new relic"
+	}, {
+		"trackerName": "Optimizely",
+		"trackerPattern": "cdn.optimizely.com",
+		"trackerType": "an",
+		"trackerParent": "optimizely"
+	}, {
+		"trackerName": "Optimizely Geographical Targeting",
+		"trackerPattern": "cdn3.optimizely.com",
+		"trackerType": "an",
+		"trackerParent": "optimizely"
+	}, {
+		"trackerName": "Outbrain Analytics",
+		"trackerPattern": "rva.outbrain.com",
+		"trackerType": "an",
+		"trackerParent": "outbrain"
+	}, {
+		"trackerName": "Parsely",
+		"trackerPattern": "paresely.com",
+		"trackerType": "an",
+		"trackerParent": "parsely"
+	}, {
+		"trackerName": "Pinterest Conversion Tracker",
+		"trackerPattern": "s.pinimg.com",
+		"trackerType": "an",
+		"trackerParent": "pinterest"
+	}, {
+		"trackerName": "Pinterest Conversion Tracker",
+		"trackerPattern": "s.pinimg.com",
+		"trackerType": "an",
+		"trackerParent": "pinterest"
+	}, {
+		"trackerName": "Quantcount",
+		"trackerPattern": "rules.quantcount.com",
+		"trackerType": "an",
+		"trackerParent": "quantcast"
+	}, {
+		"trackerName": "ScoreCard Research Beacon",
+		"trackerPattern": "sb.scorecardresearch.com",
+		"trackerType": "an",
+		"trackerParent": "scorecard"
+	}, {
+		"trackerName": "Session Cam",
+		"trackerPattern": "ws.sessioncam.com",
+		"trackerType": "sr",
+		"trackerParent": "sessioncam"
+	}, {
+		"trackerName": "Sidecar",
+		"trackerPattern": "getsidecar.com/",
+		"trackerType": "an",
+		"trackerParent": "sidecar"
+	}, {
+		"trackerName": "SOASTA mPulse",
+		"trackerPattern": "c.go-mpulse.net",
+		"trackerType": "an",
+		"trackerParent": "soasta mpulse"
+	}, {
+		"trackerName": "Twitter Analytics",
+		"trackerPattern": "analytics.twitter.com",
+		"trackerType": "an",
+		"trackerParent": "twitter"
+	}, {
+		"trackerName": "Yahoo Analytics",
+		"trackerPattern": "analytics.yahoo.com",
+		"trackerType": "an",
+		"trackerParent": "yahoo"
+	}, {
+		"trackerName": "Gigya Socialize",
+		"trackerPattern": "cdns.gigya.com",
+		"trackerType": "cu",
+		"trackerParent": "gigya"
+	}, {
+		"trackerName": "Gigya",
+		"trackerPattern": "gigya.com/gs",
+		"trackerType": "an",
+		"trackerParent": "gigya"
+	}, {
+		"trackerName": "iGoDigital",
+		"trackerPattern": "igodigital.com",
+		"trackerType": "cu",
+		"trackerParent": "igodigital"
+	}, {
+		"trackerName": "iPerceptions",
+		"trackerPattern": "api.iperceptions.com",
+		"trackerType": "cu",
+		"trackerParent": "iperceptions"
+	}, {
+		"trackerName": "KissInsights",
+		"trackerPattern": "ki.js",
+		"trackerType": "cu",
+		"trackerParent": "kissinsights"
+	}, {
+		"trackerName": "Parsely",
+		"trackerPattern": "parsely.com",
+		"trackerType": "cu",
+		"trackerParent": "parsely"
+	}, {
+		"trackerName": "Salesforce Live Agent",
+		"trackerPattern": "salesforceliveagent.com",
+		"trackerType": "cu",
+		"trackerParent": "salesforce"
+	}, {
+		"trackerName": "ShopRunner",
+		"trackerPattern": "shoprunner.com",
+		"trackerType": "cu",
+		"trackerParent": "shoprunner"
+	}, {
+		"trackerName": "Usabilla",
+		"trackerPattern": "w.usabilla.com",
+		"trackerType": "cu",
+		"trackerParent": "usabilla"
+	}, {
+		"trackerName": "ZergNet",
+		"trackerPattern": "zergnet.com",
+		"trackerType": "cu",
+		"trackerParent": "zergnet"
+	}, {
+		"trackerName": "Adobe Dynamic Tag Management",
+		"trackerPattern": "assets.adobedtm.com",
+		"trackerType": "es",
+		"trackerParent": "adobe"
+	}, {
+		"trackerName": "Typekit",
+		"trackerPattern": "typekit.net",
+		"trackerType": "es",
+		"trackerParent": "adobe"
+	}, {
+		"trackerName": "Ensighten",
+		"trackerPattern": "nexus.ensighten.com",
+		"trackerType": "es",
+		"trackerParent": "ensighten"
+	}, {
+		"trackerName": "Google Tag Manager",
+		"trackerPattern": "googletagmanager.com",
+		"trackerType": "es",
+		"trackerParent": "google"
+	}, {
+		"trackerName": "OneSignal",
+		"trackerPattern": "cdn.onesignal.com",
+		"trackerType": "es",
+		"trackerParent": "onesignal"
+	}, {
+		"trackerName": "Tealium",
+		"trackerPattern": "tags.tiqcdn.com",
+		"trackerType": "es",
+		"trackerParent": "tealium"
+	}, {
+		"trackerName": "Truste Consent",
+		"trackerPattern": "consent.truste.com",
+		"trackerType": "es",
+		"trackerParent": "truste consent"
+	}, {
+		"trackerName": "Truste Notice",
+		"trackerPattern": "choice.truste.com",
+		"trackerType": "es",
+		"trackerParent": "truste consent"
+	}, {
+		"trackerName": "Facebook Connect",
+		"trackerPattern": "connect.facebook.net",
+		"trackerType": "so",
+		"trackerParent": "facebook"
+	}, {
+		"trackerName": "Facebook Social Plugins",
+		"trackerPattern": "facebook.com/plugins",
+		"trackerType": "so",
+		"trackerParent": "facebook"
+	}, {
+		"trackerName": "Facebook Beacon",
+		"trackerPattern": "facebook.com/brandlift",
+		"trackerType": "so",
+		"trackerParent": "facebook"
+	}, {
+		"trackerName": "Gigya Counter",
+		"trackerPattern": "gscounters.us",
+		"trackerType": "so",
+		"trackerParent": "gigya"
+	}, {
+		"trackerName": "Linkedin Widget",
+		"trackerPattern": "platform.linkedin.com",
+		"trackerType": "so",
+		"trackerParent": "linkedin"
+	}, {
+		"trackerName": "Pinterest",
+		"trackerPattern": "ct.pinterest.com",
+		"trackerType": "so",
+		"trackerParent": "pinterest"
+	}, {
+		"trackerName": "Twitter Button",
+		"trackerPattern": "twitter.com/widgets",
+		"trackerType": "so",
+		"trackerParent": "twitter"
+	}, {
+		"trackerName": "sovrn",
+		"trackerPattern": "ap.lijit.com",
+		"trackerType": "ad",
+		"trackerParent": "sovrn"
+	}, {
+		"trackerName": "Advertising.com",
+		"trackerPattern": "pixel.advertising.com",
+		"trackerType": "ad",
+		"trackerParent": "aol"
+	}, {
+		"trackerName": "gumgum",
+		"trackerPattern": "va-g2.gumgum.com",
+		"trackerType": "ad",
+		"trackerParent": "gumgum"
+	}, {
+		"trackerName": "Dotomi",
+		"trackerPattern": "dotomi.com",
+		"trackerType": "ad",
+		"trackerParent": "dotomi"
+	}, {
+		"trackerName": "Dotomi",
+		"trackerPattern": "dotomi.com",
+		"trackerType": "ad",
+		"trackerParent": "dotomi"
+	}, {
+		"trackerName": "Clearstream.TV",
+		"trackerPattern": "clrstm.com",
+		"trackerType": "ad",
+		"trackerParent": "clearsteam"
+	}, {
+		"trackerName": "SalesFUSION",
+		"trackerPattern": "msgapp.com",
+		"trackerType": "ad",
+		"trackerParent": "salesfusion"
+	}, {
+		"trackerName": "Nativo",
+		"trackerPattern": "postrelease.com",
+		"trackerType": "ad",
+		"trackerParent": "nativo"
+	}, {
+		"trackerName": "Google Ads Measurement",
+		"trackerPattern": "google.com/ads/measurement",
+		"trackerType": "ad",
+		"trackerParent": "google"
+	}, {
+		"trackerName": "CivicScience",
+		"trackerPattern": "civicscience.com",
+		"trackerType": "ad",
+		"trackerParent": "civicscience"
+	}, {
+		"trackerName": "AdForm",
+		"trackerPattern": "adform.net",
+		"trackerType": "ad",
+		"trackerParent": "adform"
+	}, {
+		"trackerName": "Vidora",
+		"trackerPattern": "vidora.com",
+		"trackerType": "av",
+		"trackerParent": "vidora"
+	}, {
+		"trackerName": "Twitter Syndication",
+		"trackerPattern": "syndication.twitter.com",
+		"trackerType": "so",
+		"trackerParent": "twitter"
+	}]
+}

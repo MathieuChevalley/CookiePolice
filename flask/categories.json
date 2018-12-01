@@ -1,0 +1,87 @@
+{
+	"List": [{
+			"category": "e-commerce",
+			"website": "www.underarmour.com"
+		},
+		{
+			"category": "e-commerce",
+			"website": "www.adidas.com"
+		},
+		{
+			"category": "e-commerce",
+			"website": "shop.lululemon.com"
+		},
+		{
+			"category": "e-commerce",
+			"website": "www.patagonia.com"
+		},
+		{
+			"category": "e-commerce",
+			"website": "www.nike.com"
+		},
+		{
+			"category": "banking",
+			"website": "www.jpmorgan.com"
+		},
+		{
+			"category": "banking",
+			"website": "www.bankofamerica.com"
+		},
+		{
+			"category": "banking",
+			"website": "www.wellsfargo.com"
+		},
+		{
+			"category": "banking",
+			"website": "online.citi.com"
+		},
+		{
+			"category": "banking",
+			"website": "www.goldmansachs.com"
+		},
+		{
+			"category": "banking",
+			"website": "www.morganstanley.com"
+		},
+		{
+			"category": "banking",
+			"website": "www.usbank.com"
+		},
+		{
+			"category": "banking",
+			"website": "www.td.com"
+		},
+		{
+			"category": "banking",
+			"website": "www.pnc.com"
+		},
+		{
+			"category": "banking",
+			"website": "www.bnymellon.com"
+		},
+		{
+			"category": "banking",
+			"website": "www.capitalone.com"
+		},
+		{
+			"category": "banking",
+			"website": "www.statestreet.com"
+		},
+		{
+			"category": "banking",
+			"website": "www.bbt.com"
+		},
+    {
+			"category": "e-commerce",
+			"website": "www.bose.com"
+		},
+		{
+			"category": "banking",
+			"website": "www.suntrust.com"
+		},
+		{
+			"category": "banking",
+			"website": "www.us.hsbc.com"
+		}
+	]
+}
