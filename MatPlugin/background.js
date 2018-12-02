@@ -32,7 +32,7 @@ var ADULT_BLACKLIST = ["na"];
 var COMMENTS_BLACKLIST = ["political", "banking", "healthcare"];
 var ESSENTIAL_BLACKLIST = ["na"];
 // var SESSION_REPLAY_BLACKLIST = ["e-commerce", "banking"];
-var urlBlacklist =["...", "extensions"];
+var urlBlacklist =["...", "extensions", "newtab", ""];
 
 
 var trackerList = [];

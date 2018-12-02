@@ -22,6 +22,19 @@ def getDatabase():
         data = json.load(file)
     return json.dumps(data)
 
+@app.route('/update-trackers', methods=['POST'])
+def setTrackers():
+    if request.method == 'POST':
+        data = request.json
+        toSave = json.dumps(data)
+        if ("trackerName" in toSave):
+            if ("trackerPattern" in toSave):
+                with open("trackerList.json", "w") as file:
+                    file.write(toSave)
+                    return 'Trackers updated'
+                    print("Trackers updated")
+    return 'Update failed'
+
 @app.route('/update-database', methods=['POST'])
 def setDatabase():
     if request.method == 'POST':
@@ -41,10 +54,11 @@ def setCategories():
         data = request.json
         toSave = json.dumps(data)
         if ("category" in toSave):
-            with open("categories.json", "w") as file:
-                file.write(toSave)
-                return 'Categories updated'
-                print("Categories updated")
+            if ("score" not in toSave):
+                with open("categories.json", "w") as file:
+                    file.write(toSave)
+                    return 'Categories updated'
+                    print("Categories updated")
     return 'Update failed'
 
 if __name__ == '__main__':

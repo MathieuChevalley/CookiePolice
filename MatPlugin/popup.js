@@ -66,7 +66,7 @@ message.onMessage.addListener(function(msg) {
             barWidth = 100 - (performance * -1);
         }
 
-        if (barWidth > 0) {
+        if (barWidth > 0 && performance > 0) {
             document.getElementById("bar").style.width = barWidth + "%";
             document.getElementById("bar").style.height = "20px";
             document.getElementById("wrapper").style.marginTop = "15px";
@@ -74,9 +74,8 @@ message.onMessage.addListener(function(msg) {
             document.getElementById("wrapper").style.marginBottom = "35px";
             document.getElementById("leftLabel").innerText = "Poor";
             document.getElementById("rightLabel").innerText = "Excellent";
+            document.getElementById("categoryBox").innerText = "Against other " + category.toLowerCase() + " sites";
         }
-
-        document.getElementById("categoryBox").innerText = "Against other " + category.toLowerCase() + " sites";
 
         var performanceAnalyis = "";
         if (performance < 0) {
