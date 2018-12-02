@@ -1,19 +1,43 @@
-const TRACKER_LIST_FILE = "http://ec2-3-16-90-230.us-east-2.compute.amazonaws.com/get-trackers";
-const CATEGORIES_FILE = "http://ec2-3-16-90-230.us-east-2.compute.amazonaws.com/get-categories";
-const CONTROL_SCORE_FILE = "http://ec2-3-16-90-230.us-east-2.compute.amazonaws.com/get-database";
-const CONTROL_SCORE_UPDATE = "http://ec2-3-16-90-230.us-east-2.compute.amazonaws.com/update-database";
+const AWS_DNS = "http://" + "ec2-3-16-37-17.us-east-2.compute.amazonaws.com";
 
+const TRACKER_LIST_FILE = AWS_DNS + "/get-trackers";
+const CATEGORIES_FILE = AWS_DNS + "/get-categories";
+const CONTROL_SCORE_FILE = AWS_DNS + "/get-database";
+const CONTROL_SCORE_UPDATE = AWS_DNS + "/update-database";
 
 const SAME_COMPANY_MULTIPLIER = 1;
-const ANTI_REQUISITE_MULTIPLIER = 1.5;
+const BLACKLIST_MULTIPLIER = 1.5;
 const GOOD_BOUNDARY = 15;
 const BAD_BOUNDARY = 50;
-const GOOD_COLOR = "#32CD32";
+const GOOD_COLOR = "#00A2FF";
 const BAD_COLOR = "#DC143C";
 const OKAY_COLOR = "#000000";
 
+var ADVERTISING_SCORE = 3;
+var ANALYTICS_SCORE = 7;
+var CUSTOMER_SCORE = 1;
+var SOCIAL_SCORE = 2;
+var AV_SCORE = 1;
+var ADULT_SCORE = 5;
+var COMMENTS_SCORE = 2;
+var ESSENTIAL_SCORE = 2;
+var SESSION_REPLAY_SCORE = 15;
+
+var ADVERTISING_BLACKLIST = [];
+var ANALYTICS_BLACKLIST = [];
+var CUSTOMER_BLACKLIST = [];
+var SOCIAL_BLACKLIST = [];
+var AV_BLACKLIST = [];
+var ADULT_BLACKLIST = [];
+var COMMENTS_BLACKLIST = [];
+var ESSENTIAL_BLACKLIST = [];
+var SESSION_REPLAY_BLACKLIST = ["e-commerce", "banking"];
+var urlBlacklist =["...", "extensions"];
+
+
 var trackerList = [];
 var trackerTypeList = [];
+var blackList = [];
 
 // Message to send to popup.js
 var string = "";
@@ -28,20 +52,11 @@ var companyDict = new Object();
 // Score
 var totalScore = 0;
 var trackerScore = 0;
-var pageUrl = "https://...";
+var pageUrl = "...";
 var thisCategory = "None";
-var thisPerformance = "Better / Worse";
+var allPerformance, thisPerformance, thisPerformance2;
 var status = "";
-
-var ADVERTISING_SCORE = 3;
-var ANALYTICS_SCORE = 7;
-var CUSTOMER_SCORE = 1;
-var SOCIAL_SCORE = 2;
-var AV_SCORE = 1;
-var ADULT_SCORE = 5;
-var COMMENTS_SCORE = 2;
-var ESSENTIAL_SCORE = 2;
-var SESSION_REPLAY_SCORE = 15;
+var status2 = "";
 
 // Listens for page reloads or change of url in the implicated tab
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
@@ -55,17 +70,18 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
         importControlScores(CONTROL_SCORE_FILE);
 
         string = "";
-        status = "";
+        status = "NOSTAT";
+        status2 = "NOSTAT";
         trackerDict = new Object;
         companyDict = new Object;
         trackerList = [];
         trackerTypeList = [];
+        blackList = [];
         totalScore = 0;
     }
 
-    pageUrl = tab.url;
-    thisHost = getHostName(pageUrl);
-    thisCategory = getCategory(thisHost);
+    pageUrl = getHostName(tab.url);
+    thisCategory = getCategory(pageUrl);
 
     chrome.extension.onConnect.addListener(function (message) {
         message.postMessage(string);
@@ -76,22 +92,34 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 chrome.webRequest.onSendHeaders.addListener(
     function(details) {
         var thisUrl = details.url;
-        var thisTracker = regexChecker(thisUrl);
+        var result = regexChecker(thisUrl, thisCategory);
+        var thisTracker = result[0];
 
         if (thisTracker != null) {
             if (!(trackerList.includes(thisTracker.trackerName))) {
-                trackerList.push(thisTracker.trackerName + " (" + trackerScore + ")");
+                var thisTrackerName = thisTracker.trackerName;
+                if (result[1] == 1) {
+                    thisTrackerName = thisTrackerName + "*";
+                }
+
+                if (result[2] == 1) {
+                    thisTrackerName = thisTrackerName + "^";
+                }
+
+                trackerList.push(thisTrackerName);
             }
         }
 
-        thisPerformance = checkScore(thisCategory, thisHost, totalScore);
+        allPerformance = checkScore(thisCategory, pageUrl, totalScore);
+        thisPerformance = allPerformance[0];
+        thisPerformance2 = allPerformance[1];
 
-        chrome.browserAction.setBadgeText({text: totalScore.toString()});
+        chrome.browserAction.setBadgeText({text: parseInt(totalScore).toString()});
 
-        if (status == "better" || totalScore == 0) {
-            chrome.browserAction.setBadgeBackgroundColor({color: GOOD_COLOR});
-        } else if (status == "worse") {
+        if (status == "worse" || status2 == "worse") {
             chrome.browserAction.setBadgeBackgroundColor({color: BAD_COLOR});
+        } else if (status == "better" || status2 == "better") {
+            chrome.browserAction.setBadgeBackgroundColor({color: GOOD_COLOR});
         } else {
             chrome.browserAction.setBadgeBackgroundColor({color: OKAY_COLOR});
         }
@@ -100,7 +128,9 @@ chrome.webRequest.onSendHeaders.addListener(
     ["requestHeaders"]
 );
 
-function regexChecker(url) {
+function regexChecker(url, cat) {
+    var bla = 0;
+    var dup = 0;
     for (const [key, value] of Object.entries(allTrackers)) {
         if (url.includes(key)) {
             // Advertising
@@ -108,22 +138,32 @@ function regexChecker(url) {
                 if (!(value.trackerName in trackerDict)) {
                     trackerScore = ADVERTISING_SCORE;
 
+                    // Blacklist check
+                    if (ADVERTISING_BLACKLIST.includes(thisCategory)) {
+                        bla = 1;
+                        trackerScore = trackerScore * BLACKLIST_MULTIPLIER;
+                        if (!(trackerTypeList.includes("advertising*"))) {
+                            trackerTypeList.push("advertising*");
+                        }
+                    } else {
+                        if (!(trackerTypeList.includes("advertising"))) {
+                            trackerTypeList.push("advertising");
+                        }
+                    }
+
                     if (!(value.trackerParent in companyDict)) {
                         companyDict[value.trackerParent] = 1;
                     } else {
+                        dup = 1;
                         companyDict[value.trackerParent] += 1;
                         trackerScore = trackerScore - 1;
                     }
 
                     totalScore += trackerScore;
 
-                    if (!(trackerTypeList.includes("advertising"))) {
-                        trackerTypeList.push("advertising");
-                    }
-
                     trackerDict[value.trackerName] = 1;
 
-                    return value;
+                    return [value, bla, dup];
                 }
             }
 
@@ -132,22 +172,32 @@ function regexChecker(url) {
                 if (!(value.trackerName in trackerDict)) {
                     trackerScore = ANALYTICS_SCORE;
 
+                    // Blacklist check
+                    if (ANALYTICS_BLACKLIST.includes(thisCategory)) {
+                        bla = 1;
+                        trackerScore = trackerScore * BLACKLIST_MULTIPLIER;
+                        if (!(trackerTypeList.includes("analytics*"))) {
+                            trackerTypeList.push("analytics*");
+                        }
+                    } else {
+                        if (!(trackerTypeList.includes("analytics"))) {
+                            trackerTypeList.push("analytics");
+                        }
+                    }
+
                     if (!(value.trackerParent in companyDict)) {
                         companyDict[value.trackerParent] = 1;
                     } else {
+                        dup = 1;
                         companyDict[value.trackerParent] += 1;
                         trackerScore = trackerScore - 1;
                     }
 
                     totalScore += trackerScore;
 
-                    if (!(trackerTypeList.includes("analytics"))) {
-                        trackerTypeList.push("analytics");
-                    }
-
                     trackerDict[value.trackerName] = 1;
 
-                    return value;
+                    return [value, bla, dup];
                 }
             }
 
@@ -156,21 +206,30 @@ function regexChecker(url) {
                 if (!(value.trackerName in trackerDict)) {
                     trackerScore = CUSTOMER_SCORE;
 
+                    // Blacklist check
+                    if (CUSTOMER_BLACKLIST.includes(thisCategory)) {
+                        bla = 1;
+                        trackerScore = trackerScore * BLACKLIST_MULTIPLIER;
+                        if (!(trackerTypeList.includes("customer service*"))) {
+                            trackerTypeList.push("customer service*");
+                        }
+                    } else {
+                        if (!(trackerTypeList.includes("customer service"))) {
+                            trackerTypeList.push("customer service");
+                        }
+                    }
+
                     if (!(value.trackerParent in companyDict)) {
                         companyDict[value.trackerParent] = 1;
                     } else {
+                        dup = 1;
                         companyDict[value.trackerParent] += 1;
                         trackerScore = trackerScore - 1;
                     }
 
-                    totalScore += trackerScore;
-                    if (!(trackerTypeList.includes("customer service"))) {
-                        trackerTypeList.push("customer service");
-                    }
-
                     trackerDict[value.trackerName] = 1;
 
-                    return value;
+                    return [value, bla, dup];
                 }
             }
 
@@ -179,22 +238,32 @@ function regexChecker(url) {
                 if (!(value.trackerName in trackerDict)) {
                     trackerScore = ADULT_SCORE;
 
+                    // Blacklist check
+                    if (ADULT_BLACKLIST.includes(thisCategory)) {
+                        bla = 1;
+                        trackerScore = trackerScore * BLACKLIST_MULTIPLIER;
+                        if (!(trackerTypeList.includes("adult*"))) {
+                            trackerTypeList.push("adult*");
+                        }
+                    } else {
+                        if (!(trackerTypeList.includes("adult"))) {
+                            trackerTypeList.push("adult");
+                        }
+                    }
+
                     if (!(value.trackerParent in companyDict)) {
                         companyDict[value.trackerParent] = 1;
                     } else {
+                        dup = 1;
                         companyDict[value.trackerParent] += 1;
                         trackerScore = trackerScore - 1;
                     }
 
                     totalScore += trackerScore;
 
-                    if (!(trackerTypeList.includes("adult websites"))) {
-                        trackerTypeList.push("adult websites");
-                    }
-
                     trackerDict[value.trackerName] = 1;
 
-                    return value;
+                    return [value, bla, dup];
                 }
             }
 
@@ -203,22 +272,32 @@ function regexChecker(url) {
                 if (!(value.trackerName in trackerDict)) {
                     trackerScore = ESSENTIAL_SCORE;
 
+                    // Blacklist check
+                    if (ESSENTIAL_BLACKLIST.includes(thisCategory)) {
+                        bla = 1;
+                        trackerScore = trackerScore * BLACKLIST_MULTIPLIER;
+                        if (!(trackerTypeList.includes("essentials*"))) {
+                            trackerTypeList.push("essentials*");
+                        }
+                    } else {
+                        if (!(trackerTypeList.includes("essentials"))) {
+                            trackerTypeList.push("essentials");
+                        }
+                    }
+
                     if (!(value.trackerParent in companyDict)) {
                         companyDict[value.trackerParent] = 1;
                     } else {
+                        dup = 1;
                         companyDict[value.trackerParent] += 1;
                         trackerScore = trackerScore - 1;
                     }
 
                     totalScore += trackerScore;
 
-                    if (!(trackerTypeList.includes("essentials"))) {
-                        trackerTypeList.push("essentials");
-                    }
-
                     trackerDict[value.trackerName] = 1;
 
-                    return value;
+                    return [value, bla, dup];
                 }
             }
 
@@ -227,22 +306,32 @@ function regexChecker(url) {
                 if (!(value.trackerName in trackerDict)) {
                     trackerScore = SOCIAL_SCORE;
 
+                    // Blacklist check
+                    if (SOCIAL_BLACKLIST.includes(thisCategory)) {
+                        bla = 1;
+                        trackerScore = trackerScore * BLACKLIST_MULTIPLIER;
+                        if (!(trackerTypeList.includes("social media*"))) {
+                            trackerTypeList.push("social media*");
+                        }
+                    } else {
+                        if (!(trackerTypeList.includes("social media"))) {
+                            trackerTypeList.push("social media");
+                        }
+                    }
+
                     if (!(value.trackerParent in companyDict)) {
                         companyDict[value.trackerParent] = 1;
                     } else {
+                        dup = 1;
                         companyDict[value.trackerParent] += 1;
                         trackerScore = trackerScore - 1;
                     }
 
                     totalScore += trackerScore;
 
-                    if (!(trackerTypeList.includes("social media"))) {
-                        trackerTypeList.push("social media");
-                    }
-
                     trackerDict[value.trackerName] = 1;
 
-                    return value;
+                    return [value, bla, dup];
                 }
             }
 
@@ -251,22 +340,32 @@ function regexChecker(url) {
                 if (!(value.trackerName in trackerDict)) {
                     trackerScore = AV_SCORE;
 
+                    // Blacklist check
+                    if (AV_BLACKLIST.includes(thisCategory)) {
+                        bla = 1;
+                        trackerScore = trackerScore * BLACKLIST_MULTIPLIER;
+                        if (!(trackerTypeList.includes("audio & video player*"))) {
+                            trackerTypeList.push("audio & video player*");
+                        }
+                    } else {
+                        if (!(trackerTypeList.includes("audio & video player"))) {
+                            trackerTypeList.push("audio & video player");
+                        }
+                    }
+
                     if (!(value.trackerParent in companyDict)) {
                         companyDict[value.trackerParent] = 1;
                     } else {
+                        dup = 1;
                         companyDict[value.trackerParent] += 1;
                         trackerScore = trackerScore - 1;
                     }
 
                     totalScore += trackerScore;
 
-                    if (!(trackerTypeList.includes("audio & video player"))) {
-                        trackerTypeList.push("audio & video player");
-                    }
-
                     trackerDict[value.trackerName] = 1;
 
-                    return value;
+                    return [value, bla, dup];
                 }
             }
 
@@ -275,9 +374,23 @@ function regexChecker(url) {
                 if (!(value.trackerName in trackerDict)) {
                     trackerScore = COMMENTS_SCORE;
 
+                    // Blacklist check
+                    if (COMMENTS_BLACKLIST.includes(thisCategory)) {
+                        bla = 1;
+                        trackerScore = trackerScore * BLACKLIST_MULTIPLIER;
+                        if (!(trackerTypeList.includes("comments*"))) {
+                            trackerTypeList.push("comments*");
+                        }
+                    } else {
+                        if (!(trackerTypeList.includes("comments"))) {
+                            trackerTypeList.push("comments");
+                        }
+                    }
+
                     if (!(value.trackerParent in companyDict)) {
                         companyDict[value.trackerParent] = 1;
                     } else {
+                        dup = 1;
                         companyDict[value.trackerParent] += 1;
                         trackerScore = trackerScore - 1;
                     }
@@ -289,7 +402,7 @@ function regexChecker(url) {
 
                     trackerDict[value.trackerName] = 1;
 
-                    return value;
+                    return [value, bla, dup];
                 }
             }
 
@@ -298,27 +411,36 @@ function regexChecker(url) {
                 if (!(value.trackerName in trackerDict)) {
                     trackerScore = SESSION_REPLAY_SCORE;
 
+                    // Blacklist check
+                    if (SESSION_REPLAY_BLACKLIST.includes(thisCategory)) {
+                        bla = 1;
+                        trackerScore = trackerScore * BLACKLIST_MULTIPLIER;
+                        if (!(trackerTypeList.includes("session replay*"))) {
+                            trackerTypeList.push("session replay*");
+                        }
+                    } else {
+                        if (!(trackerTypeList.includes("session replay"))) {
+                            trackerTypeList.push("session replay");
+                        }
+                    }
+
                     if (!(value.trackerParent in companyDict)) {
                         companyDict[value.trackerParent] = 1;
                     } else {
+                        dup = 1;
                         companyDict[value.trackerParent] += 1;
                         trackerScore = trackerScore - 1;
                     }
 
-                    totalScore += trackerScore;
-                    if (!(trackerTypeList.includes("session replay"))) {
-                        trackerTypeList.push("session replay");
-                    }
-
                     trackerDict[value.trackerName] = 1;
 
-                    return value;
+                    return [value, bla, dup];
                 }
             }
         }
     }
 
-    return null;
+    return [null, 0, 0];
 }
 
 // Function to import tracker list
@@ -340,9 +462,11 @@ function importWebCategory(url) {
     xhr.send();
     var response = xhr.responseText;
     var jsonResponse = JSON.parse(response);
-    for (var i = 0; i < jsonResponse.List.length; i++) {
-        categories[jsonResponse.List[i].website] = new Object();
-        categories[jsonResponse.List[i].website] = jsonResponse.List[i];
+    for (var key in jsonResponse) {
+        if (jsonResponse.hasOwnProperty(key)) {
+            categories[key] = new Object();
+            categories[key].category = jsonResponse[key].category;
+        }
     }
 }
 
@@ -366,46 +490,81 @@ function importControlScores(url) {
 function checkScore(cat, thisUrl, score) {
     var better = 0;
     var worse = 0;
+    var better2 = 0;
+    var worse2 = 0;
     var totalInCategory = 0;
-
-    if (cat == "null") {
-        return 403;
-    }
+    var total = 0;
+    var res1 = 0;
+    var res2 = 0;
 
     if (!(thisUrl in controlScores)) {
-        if (thisUrl != undefined && thisUrl != "...") {
+        if (thisUrl != undefined && !(urlBlacklist.includes(thisUrl))) {
             controlScores[thisUrl] = new Object();
             controlScores[thisUrl].score = score;
             controlScores[thisUrl].category = cat;
+            updateDatabase();
         }
+    }
+
+    if (controlScores[thisUrl].category != cat) {
+        controlScores[thisUrl].category = cat;
+        updateDatabase();
     }
 
     // Loop through all scores
     for (const [key, value] of Object.entries(controlScores)) {
         if (value.category == cat) {
             totalInCategory = totalInCategory + 1;
-            if (score <= value.score) {
-                better = better + 1;
-            } else {
-                worse = worse + 1;
-            }
-
-            if (key == thisUrl && cat != "null") {
-                if (value.score < score) {
-                    value.score = score;
-                    updateDatabase();
+            total = total + 1;
+            if (key != thisUrl) { // Do not compare with self
+                if (score <= value.score) {
+                    better = better + 1;
+                    better2 = better2 + 1;
+                } else {
+                    worse = worse + 1;
+                    worse2 = worse2 + 1;
                 }
+            }
+        } else { // If other category, compare with everything else
+            total = total + 1;
+            if (key != thisUrl) { // Do not compare with self
+                if (score <= value.score) {
+                    better2 = better2 + 1;
+                } else {
+                    worse2 = worse2 + 1;
+                }
+            }
+        }
+
+        if (key == thisUrl) { // If score difference is +/- 3, update DB
+            if (!((value.score - 3) <= score && score <= (value.score + 3))) {
+                value.score = score;
+                updateDatabase();
             }
         }
     }
 
-    if (better > worse) {
+    if (better > worse * 0.8) {
         status = "better";
-        return parseInt(better / totalInCategory * 100);
+        res1 = parseInt(better / totalInCategory * 100);
     } else {
         status = "worse";
-        return parseInt(worse / totalInCategory * -100);
+        res1 = parseInt(worse / totalInCategory * -100);
     }
+
+    if (cat == "null") {
+        status = "NOSTAT";
+    }
+
+    if (better2 > worse2 * 0.8) {
+        status2 = "better";
+        res2 = parseInt(better2 / total * 100);
+    } else {
+        status2 = "worse";
+        res2 = parseInt(worse2 / total * -100);
+    }
+
+    return [res1, res2];
 }
 
 function getCategory(hostName) {

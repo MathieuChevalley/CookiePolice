@@ -9,32 +9,62 @@
 
     h3 {
         font-size: 16px;
+        margin-bottom: 10px;
+        padding-bottom: 0px;
+        color: #00A2FF;
     }
 
     h4 {
         font-size: 14px;
         font-weight: normal;
+        margin-top: 0px;
+        padding-top: 0px;
+    }
+
+    p {
+        opacity: 0.7;
     }
 </style>
 </head>
-<body style="width:450px;">
-<div id="welcomeHeader" style="color:#00A2FF;"><img src="banner.png" alt="Banner" width="300px">
+<body style="width:300px; padding: 15px; padding-bottom: 0px;">
+<div id="welcomeHeader" style="color:#00A2FF;">
+    <img src="banner.png" alt="Banner" width="300px" style="margin-bottom: 15px;">
 </div>
-<h4><b>Instruction:</b> Reload the page to start page analysis.<br></h4>
+<p><b>How to use</b><br>Re-load the tab to start analyzing the page. Once loaded, re-open the extension to update the results. Loading takes time, you might have to reload the extension several times to obtain the final result.</p>
+<p style="margin-bottom: 15px;"><b>Privacy statement</b><br>While this extension make requests to our servers, we do not receive/record any information about you. All data processing is done in your browser.</p>
 <h3 id="urlHeader"></h3>
 <h4 id="urlBox"></h4>
 <h3 id="scoreHeader"></h3>
-<h1 id="scoreBox"></h1>
-<h3 id="categoryHeader"></h3>
-<h4 id="categoryBox"></h4>
+<h1 id="scoreBox" style="padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;"></h1>
+<p id="scoreExplanationBox" style="margin-top: 0px; padding-top: 0px;"></p>
 <h3 id="performanceHeader"></h3>
-<h4 id="performanceBox"></h4>
-<h3 id="typeHeader"></h3>
-<h4 id="typeBox"></h4>
-<h3 id="companiesHeader"></h3>
-<h4 id="companiesBox"></h4>
-<h3 id="trackerHeader"></h3>
-<h4 id="trackerBox"></h4>
-<!--<div id='textBox'>Injecting Script..</div>-->
+<h4 id="categoryBox" style="font-weight: bold;"></h4>
+<div id ="wrapper" style="display: none;">
+    <div id="bar"></div>
+    <p id="leftLabel" style="float: left; margin: 5px 0;"></p>
+    <p id="rightLabel" style="float: right; margin: 5px 0;"></p>
+</div>
+<div>
+    <h4 id="performanceBox"></h4>
+</div>
+<h4 id="globalBox" style="font-weight: bold;"></h4>
+<div id ="wrapper2" style="display: none;">
+    <div id="bar2"></div>
+    <p id="leftLabel2" style="float: left; margin: 5px 0;"></p>
+    <p id="rightLabel2" style="float: right; margin: 5px 0;"></p>
+</div>
+<div>
+    <h4 id="performanceBox2"></h4>
+</div>
+    <h4 id="categoryBox"></h4>
+    <h3 id="typeHeader"></h3>
+    <h4 id="typeBox"></h4>
+    <p id="typeDesc"></p>
+    <h3 id="companiesHeader"></h3>
+    <h4 id="companiesBox"></h4>
+    <h3 id="trackerHeader"></h3>
+    <h4 id="trackerBox"></h4>
+    <p id="trackerDesc"></p>
+</div>
 </body>
 </html>

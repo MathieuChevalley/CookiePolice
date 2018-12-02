@@ -12,13 +12,13 @@ var message = chrome.extension.connect({
 });
 
 message.onMessage.addListener(function(msg) {
-    document.getElementById("scoreBox").innerText = background.totalScore;
+    document.getElementById("scoreBox").innerText = parseInt(background.totalScore);
     document.getElementById("urlBox").innerText = background.pageUrl;
 
-    if (background.status == "better" || background.totalScore == 0) {
-        document.getElementById("scoreBox").style.color = GOOD_COLOR
-    } else if (background.status == "worse") {
+    if (background.status == "worse" || background.status2 == "worse") {
         document.getElementById("scoreBox").style.color = BAD_COLOR;
+    } else if (background.status == "better" || background.status2 == "better") {
+        document.getElementById("scoreBox").style.color = GOOD_COLOR;
     } else {
         document.getElementById("scoreBox").style.color = OKAY_COLOR;
     }
@@ -33,62 +33,131 @@ message.onMessage.addListener(function(msg) {
     var listOfCompaniesList = [];
     var companies = "";
     for (const [key, value] of Object.entries(listOfCompanies)) {
-        listOfCompaniesList.push(value + " " + key.toUpperCase());
+        listOfCompaniesList.push(value + " " + key);
     }
 
     listOfCompaniesList = listOfCompaniesList.sort().reverse();
 
     for (var i = 0; i < listOfCompaniesList.length; i++) {
-        companies = companies + listOfCompaniesList[i] + "\n" ;
+        companies = companies + listOfCompaniesList[i].toUpperCase() + "\n" ;
     }
 
     var listOfTypes = background.trackerTypeList.sort();
     var types = "";
 
     for (var i = 0; i < listOfTypes.length; i++) {
-        types = types + listOfTypes[i].toUpperCase() + "\n";
+        types = types + capitalizeFirstLetters(listOfTypes[i]) + "\n";
     }
 
-    var category = background.thisCategory.toUpperCase();
-    if (category == "NULL") {
+    var performance = background.thisPerformance;
+
+    var category = capitalizeFirstLetters(background.thisCategory);
+    if (category == "Null") {
         category = "";
     } else {
-        document.getElementById("categoryHeader").innerText = "Website Category";
-        document.getElementById("categoryBox").innerText = category;
-        document.getElementById("performanceHeader").innerText = "Site Performance";
+        document.getElementById("performanceHeader").innerText = "Comparative Privacy";
+        var barWidth = 0;
+
+        if (performance > 0) {
+            document.getElementById("bar").style.backgroundColor = GOOD_COLOR;
+            barWidth = performance;
+        } else {
+            document.getElementById("bar").style.backgroundColor = BAD_COLOR;
+            barWidth = 100 - (performance * -1);
+        }
+
+        if (barWidth > 0) {
+            document.getElementById("bar").style.width = barWidth + "%";
+            document.getElementById("bar").style.height = "20px";
+            document.getElementById("wrapper").style.marginTop = "15px";
+            document.getElementById("wrapper").style.display = "block";
+            document.getElementById("wrapper").style.marginBottom = "35px";
+            document.getElementById("leftLabel").innerText = "Poor";
+            document.getElementById("rightLabel").innerText = "Excellent";
+        }
+
+        document.getElementById("categoryBox").innerText = "Against other " + category.toLowerCase() + " sites";
+
+        var performanceAnalyis = "";
+        if (performance < 0) {
+            performanceAnalyis = "This website's CookieScore is higher than " + (performance * -1).toString() + "% of all the " + category.toLowerCase() + " websites on our database. Keep scrolling to learn more.";
+        } else if (performance > 0 && performance <= 100) {
+            performanceAnalyis = "This website's CookieScore is lower than " + (performance).toString() + "% of all the " + category.toLowerCase() + " websites on our database. We think that's a win for you!";
+        }
+        document.getElementById("performanceBox").innerText = performanceAnalyis;
     }
 
-    var performanceAnalyis = "";
-    var performance = background.thisPerformance;
-    if (performance < 0) {
-        performanceAnalyis = "This site uses more trackers than " + (performance * -1).toString() + "% of " + category.toLowerCase() + " websites.";
-    } else if (performance > 0 && performance <= 100) {
-        performanceAnalyis = "This site uses less trackers than " + (performance).toString() + "% of " + category.toLowerCase() + " websites.";
+    if (background.totalScore != 0) {
+        document.getElementById("performanceHeader").innerText = "Comparative Privacy";
+        var barWidth2 = 0;
+
+        var performance2 = background.thisPerformance2;
+
+        if (performance2 > 0) {
+            document.getElementById("bar2").style.backgroundColor = GOOD_COLOR;
+            barWidth2 = performance2;
+        } else {
+            document.getElementById("bar2").style.backgroundColor = BAD_COLOR;
+            barWidth2 = 100 - (performance2 * -1);
+        }
+
+        if (barWidth2 > 0) {
+            document.getElementById("bar2").style.width = barWidth2 + "%";
+            document.getElementById("bar2").style.height = "20px";
+            document.getElementById("wrapper2").style.marginTop = "15px";
+            document.getElementById("wrapper2").style.display = "block";
+            document.getElementById("wrapper2").style.marginBottom = "35px";
+            document.getElementById("leftLabel2").innerText = "Poor";
+            document.getElementById("rightLabel2").innerText = "Excellent";
+        }
+
+        var performanceAnalyis2 = "";
+        if (performance2 < 0) {
+            performanceAnalyis2 = "This website's CookieScore is higher than " + (performance2 * -1).toString() + "% of all the websites on our database. Keep scrolling to learn more.";
+        } else if (performance2 > 0 && performance2 <= 100) {
+            performanceAnalyis2 = "This website's CookieScore is lower than " + (performance2).toString() + "% of all the websites on our database. We think that's a win for you!";
+        }
+
+        document.getElementById("globalBox").innerText = "Against all other sites";
+        document.getElementById("performanceBox2").innerText = performanceAnalyis2;
     }
 
-    document.getElementById("welcomeHeader").style.color = HEADER_COLOR;
-    document.getElementById("typeHeader").style.color = HEADER_COLOR;
-    document.getElementById("performanceHeader").style.color = HEADER_COLOR;
-    document.getElementById("performanceBox").innerText = performanceAnalyis;
-    document.getElementById("categoryHeader").style.color = HEADER_COLOR;
-    document.getElementById("companiesHeader").style.color = HEADER_COLOR;
-    document.getElementById("trackerHeader").style.color = HEADER_COLOR;
     document.getElementById("urlHeader").innerText = "Report for";
-    document.getElementById("urlHeader").style.color = HEADER_COLOR;
     document.getElementById("scoreHeader").innerText = "CookieScore";
-    document.getElementById("scoreHeader").style.color = HEADER_COLOR;
     document.getElementById("typeHeader").innerText = "Tracker Categories (" + listOfTypes.length.toString() + ")";
     document.getElementById("typeBox").innerText = types;
     document.getElementById("companiesHeader").innerText = "Companies (" + listOfCompaniesList.length.toString() + ")";
     document.getElementById("companiesBox").innerText = companies;
     document.getElementById("trackerHeader").innerText = "Trackers (" + listOfTrackers.length.toString() + ")";
     document.getElementById("trackerBox").innerText = trackers;
-
+    document.getElementById("scoreExplanationBox").innerText = "From 0 to infinity, how low can they go?";
 
     if (background.totalScore == 0) {
-        document.getElementById("performanceBox").innerText = "Here's to zero third-party trackers!";
+        document.getElementById("scoreExplanationBox").innerText = "Truly, a site to behold!";
         document.getElementById("typeHeader").innerText = "";
         document.getElementById("companiesHeader").innerText = "";
         document.getElementById("trackerHeader").innerText = "";
     }
+
+    if (types.includes('*')) {
+        document.getElementById("typeDesc").innerText = "*This category of tracker is considered to be unsuitable for use with " + category.toLowerCase() + " websites.";
+    }
+
+    var trackerDesc = "";
+
+    if (trackers.includes('*')) {
+        trackerDesc = trackerDesc + "*This tracker is considered to be unsuitable for use with " + category.toLowerCase() + " websites. This was taken into consideration when aggregating the CookieScore.\n\n";
+    }
+
+    if (trackers.includes('^')) {
+        trackerDesc = trackerDesc + "^The company operating this tracker operates more than one tracker on this website. This was taken into consideration when aggregating the CookieScore.\n\n";
+    }
+
+    document.getElementById("trackerDesc").innerText = trackerDesc;
 });
+
+function capitalizeFirstLetters(str){
+    return str.toLowerCase().replace(/^\w|\s\w/g, function (letter) {
+        return letter.toUpperCase();
+    })
+}

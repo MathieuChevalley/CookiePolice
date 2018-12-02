@@ -1,4 +1,4 @@
-# scp -i cookiepolice.pem backend.py ubuntu@3.16.90.230:~/backend.py
+scp -i cookiepolice.pem backend.py ubuntu@3.16.37.17:~/backend.py
 # scp -i cookiepolice.pem trackerList.json ubuntu@3.16.90.230:~/trackerList.json
-scp -i cookiepolice.pem categories.json ubuntu@3.16.90.230:~/categories.json
-# scp -i cookiepolice.pem database.json ubuntu@3.16.90.230:~/database.json
+# scp -i cookiepolice.pem categories.json ubuntu@3.16.90.230:~/categories.json
+# scp -i cookiepolice.pem database.json ubuntu@3.16.37.17:~/database.json

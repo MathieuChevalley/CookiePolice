@@ -27,10 +27,25 @@ def setDatabase():
     if request.method == 'POST':
         data = request.json
         toSave = json.dumps(data)
-        with open("database.json", "w") as file:
-            file.write(toSave)
-        print("Database updated")
-    return 'Database updated'
+        if ("score" in toSave):
+            if ("category" in toSave):
+                with open("database.json", "w") as file:
+                    file.write(toSave)
+                    return 'Database updated'
+                    print("Database updated")
+    return 'Update failed'
+
+@app.route('/update-categories', methods=['POST'])
+def setCategories():
+    if request.method == 'POST':
+        data = request.json
+        toSave = json.dumps(data)
+        if ("category" in toSave):
+            with open("categories.json", "w") as file:
+                file.write(toSave)
+                return 'Categories updated'
+                print("Categories updated")
+    return 'Update failed'
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", debug=True, port=80)
