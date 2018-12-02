@@ -15,7 +15,7 @@ message.onMessage.addListener(function(msg) {
     document.getElementById("scoreBox").innerText = parseInt(background.totalScore);
     document.getElementById("urlBox").innerText = background.pageUrl;
 
-    if (background.status == "worse" || background.status2 == "worse") {
+    if (background.status == "worse" || (background.status2 == "worse" && background.status == "NOSTAT")) {
         document.getElementById("scoreBox").style.color = BAD_COLOR;
     } else if (background.status == "better" || background.status2 == "better") {
         document.getElementById("scoreBox").style.color = GOOD_COLOR;

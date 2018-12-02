@@ -13,25 +13,25 @@ const GOOD_COLOR = "#00A2FF";
 const BAD_COLOR = "#DC143C";
 const OKAY_COLOR = "#000000";
 
-var ADVERTISING_SCORE = 3;
-var ANALYTICS_SCORE = 7;
+var ADVERTISING_SCORE = 4;
+var ANALYTICS_SCORE = 5;
 var CUSTOMER_SCORE = 1;
-var SOCIAL_SCORE = 2;
-var AV_SCORE = 1;
-var ADULT_SCORE = 5;
-var COMMENTS_SCORE = 2;
-var ESSENTIAL_SCORE = 2;
-var SESSION_REPLAY_SCORE = 15;
+var SOCIAL_SCORE = 6;
+var AV_SCORE = 2;
+var ADULT_SCORE = 7;
+var COMMENTS_SCORE = 3;
+var ESSENTIAL_SCORE = 1;
+var SESSION_REPLAY_SCORE = 8;
 
-var ADVERTISING_BLACKLIST = [];
-var ANALYTICS_BLACKLIST = [];
-var CUSTOMER_BLACKLIST = [];
-var SOCIAL_BLACKLIST = [];
-var AV_BLACKLIST = [];
-var ADULT_BLACKLIST = [];
-var COMMENTS_BLACKLIST = [];
-var ESSENTIAL_BLACKLIST = [];
-var SESSION_REPLAY_BLACKLIST = ["e-commerce", "banking"];
+var ADVERTISING_BLACKLIST = ["banking", "adult", "healthcare"];
+var ANALYTICS_BLACKLIST = ["banking"];
+var CUSTOMER_BLACKLIST = ["adult"];
+var SOCIAL_BLACKLIST = ["banking", "healthcare"];
+var AV_BLACKLIST = ["na"];
+var ADULT_BLACKLIST = ["na"];
+var COMMENTS_BLACKLIST = ["political", "banking", "healthcare"];
+var ESSENTIAL_BLACKLIST = ["na"];
+// var SESSION_REPLAY_BLACKLIST = ["e-commerce", "banking"];
 var urlBlacklist =["...", "extensions"];
 
 
@@ -116,7 +116,7 @@ chrome.webRequest.onSendHeaders.addListener(
 
         chrome.browserAction.setBadgeText({text: parseInt(totalScore).toString()});
 
-        if (status == "worse" || status2 == "worse") {
+        if (status == "worse" || (status2 == "worse" && status == "NOSTAT")) {
             chrome.browserAction.setBadgeBackgroundColor({color: BAD_COLOR});
         } else if (status == "better" || status2 == "better") {
             chrome.browserAction.setBadgeBackgroundColor({color: GOOD_COLOR});
@@ -412,7 +412,8 @@ function regexChecker(url, cat) {
                     trackerScore = SESSION_REPLAY_SCORE;
 
                     // Blacklist check
-                    if (SESSION_REPLAY_BLACKLIST.includes(thisCategory)) {
+                    if (true) {
+                    // if (SESSION_REPLAY_BLACKLIST.includes(thisCategory)) {
                         bla = 1;
                         trackerScore = trackerScore * BLACKLIST_MULTIPLIER;
                         if (!(trackerTypeList.includes("session replay*"))) {
