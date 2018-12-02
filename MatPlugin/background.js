@@ -545,7 +545,7 @@ function checkScore(cat, thisUrl, score) {
         }
     }
 
-    if (better > worse * 0.8) {
+    if (better > worse) {
         status = "better";
         res1 = parseInt(better / totalInCategory * 100);
     } else {
