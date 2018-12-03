@@ -63,8 +63,8 @@ message.onMessage.addListener(function(msg) {
             barWidth = performance;
         } else {
             document.getElementById("bar").style.backgroundColor = BAD_COLOR;
-            // barWidth = 100 - (performance * -1);
-            barWidth = (performance * -1);
+            barWidth = 100 - (performance * -1);
+            // barWidth = (performance * -1);
         }
 
         if (barWidth > 0 && performance != 0) {
@@ -98,8 +98,8 @@ message.onMessage.addListener(function(msg) {
             barWidth2 = performance2;
         } else {
             document.getElementById("bar2").style.backgroundColor = BAD_COLOR;
-            // barWidth2 = 100 - (performance2 * -1);
-            barWidth2 = (performance2 * -1);
+            barWidth2 = 100 - (performance2 * -1);
+            // barWidth2 = (performance2 * -1);
         }
 
         if (barWidth2 > 0) {

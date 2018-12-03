@@ -97,13 +97,13 @@ chrome.webRequest.onSendHeaders.addListener(
 
         if (thisTracker != null) {
             if (!(trackerList.includes(thisTracker.trackerName))) {
-                var thisTrackerName = thisTracker.trackerName;
+                var thisTrackerName = thisTracker.trackerName + " [" + result[3] + "]";
                 if (result[1] == 1) {
                     thisTrackerName = thisTrackerName + "*";
                 }
 
                 if (result[2] == 1) {
-                    thisTrackerName = thisTrackerName + "^";
+                    thisTrackerName = thisTrackerName + "^" ;
                 }
 
                 trackerList.push(thisTrackerName);
@@ -163,7 +163,7 @@ function regexChecker(url, cat) {
 
                     trackerDict[value.trackerName] = 1;
 
-                    return [value, bla, dup];
+                    return [value, bla, dup, trackerScore];
                 }
             }
 
@@ -197,7 +197,7 @@ function regexChecker(url, cat) {
 
                     trackerDict[value.trackerName] = 1;
 
-                    return [value, bla, dup];
+                    return [value, bla, dup, trackerScore];
                 }
             }
 
@@ -229,7 +229,7 @@ function regexChecker(url, cat) {
 
                     trackerDict[value.trackerName] = 1;
 
-                    return [value, bla, dup];
+                    return [value, bla, dup, trackerScore];
                 }
             }
 
@@ -263,7 +263,7 @@ function regexChecker(url, cat) {
 
                     trackerDict[value.trackerName] = 1;
 
-                    return [value, bla, dup];
+                    return [value, bla, dup, trackerScore];
                 }
             }
 
@@ -297,7 +297,7 @@ function regexChecker(url, cat) {
 
                     trackerDict[value.trackerName] = 1;
 
-                    return [value, bla, dup];
+                    return [value, bla, dup, trackerScore];
                 }
             }
 
@@ -331,7 +331,7 @@ function regexChecker(url, cat) {
 
                     trackerDict[value.trackerName] = 1;
 
-                    return [value, bla, dup];
+                    return [value, bla, dup, trackerScore];
                 }
             }
 
@@ -365,7 +365,7 @@ function regexChecker(url, cat) {
 
                     trackerDict[value.trackerName] = 1;
 
-                    return [value, bla, dup];
+                    return [value, bla, dup, trackerScore];
                 }
             }
 
@@ -402,7 +402,7 @@ function regexChecker(url, cat) {
 
                     trackerDict[value.trackerName] = 1;
 
-                    return [value, bla, dup];
+                    return [value, bla, dup, trackerScore];
                 }
             }
 
@@ -435,7 +435,7 @@ function regexChecker(url, cat) {
 
                     trackerDict[value.trackerName] = 1;
 
-                    return [value, bla, dup];
+                    return [value, bla, dup, trackerScore];
                 }
             }
         }
@@ -545,12 +545,25 @@ function checkScore(cat, thisUrl, score) {
         }
     }
 
+    if (totalInCategory > 0) {
+        totalInCategory = totalInCategory - 1;
+    }
+
+    if (total > 0) {
+        total = total - 1;
+    }
+
     if (better > worse) {
         status = "better";
         res1 = parseInt(better / totalInCategory * 100);
     } else {
         status = "worse";
         res1 = parseInt(worse / totalInCategory * -100);
+    }
+
+    if (res1 > -50 && res1 < 0) {
+        status = "better";
+        res1 = 100 - (res1 * -1);
     }
 
     if (cat == "null") {
@@ -563,6 +576,11 @@ function checkScore(cat, thisUrl, score) {
     } else {
         status2 = "worse";
         res2 = parseInt(worse2 / total * -100);
+    }
+
+    if (res2 > -50 && res2 < 0) {
+        status2 = "better";
+        res2 = 100 - (res2 * -1);
     }
 
     return [res1, res2];
