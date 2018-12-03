@@ -67,9 +67,7 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
         importTrackers(TRACKER_LIST_FILE);
         importWebCategory(CATEGORIES_FILE);
         importControlScores(CONTROL_SCORE_FILE);
-
-        alert(serverCheck);
-
+        
         string = "";
         status = "NOSTAT";
         status2 = "NOSTAT";
