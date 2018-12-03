@@ -67,7 +67,7 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
         importTrackers(TRACKER_LIST_FILE);
         importWebCategory(CATEGORIES_FILE);
         importControlScores(CONTROL_SCORE_FILE);
-        
+
         string = "";
         status = "NOSTAT";
         status2 = "NOSTAT";
@@ -90,37 +90,42 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 // Intercepts all outgoing HTTP requests made in Chrome
 chrome.webRequest.onSendHeaders.addListener(
     function(details) {
-        var thisUrl = details.url;
-        var result = regexChecker(thisUrl, thisCategory);
-        var thisTracker = result[0];
+        if (serverCheck != "off") {
+            var thisUrl = details.url;
+            var result = regexChecker(thisUrl, thisCategory);
+            var thisTracker = result[0];
 
-        if (thisTracker != null) {
-            if (!(trackerList.includes(thisTracker.trackerName))) {
-                var thisTrackerName = thisTracker.trackerName + " [" + result[3] + "]";
-                if (result[1] == 1) {
-                    thisTrackerName = thisTrackerName + "*";
+            if (thisTracker != null) {
+                if (!(trackerList.includes(thisTracker.trackerName))) {
+                    var thisTrackerName = thisTracker.trackerName + " [" + result[3] + "]";
+                    if (result[1] == 1) {
+                        thisTrackerName = thisTrackerName + "*";
+                    }
+
+                    if (result[2] == 1) {
+                        thisTrackerName = thisTrackerName + "^" ;
+                    }
+
+                    trackerList.push(thisTrackerName);
                 }
-
-                if (result[2] == 1) {
-                    thisTrackerName = thisTrackerName + "^" ;
-                }
-
-                trackerList.push(thisTrackerName);
             }
-        }
 
-        allPerformance = checkScore(thisCategory, pageUrl, totalScore);
-        thisPerformance = allPerformance[0];
-        thisPerformance2 = allPerformance[1];
+            allPerformance = checkScore(thisCategory, pageUrl, totalScore);
+            thisPerformance = allPerformance[0];
+            thisPerformance2 = allPerformance[1];
 
-        chrome.browserAction.setBadgeText({text: parseInt(totalScore).toString()});
+            chrome.browserAction.setBadgeText({text: parseInt(totalScore).toString()});
 
-        if (status == "worse" || (status2 == "worse" && status == "NOSTAT")) {
-            chrome.browserAction.setBadgeBackgroundColor({color: BAD_COLOR});
-        } else if (status == "better" || status2 == "better") {
-            chrome.browserAction.setBadgeBackgroundColor({color: GOOD_COLOR});
+            if (status == "worse" || (status2 == "worse" && status == "NOSTAT")) {
+                chrome.browserAction.setBadgeBackgroundColor({color: BAD_COLOR});
+            } else if (status == "better" || status2 == "better") {
+                chrome.browserAction.setBadgeBackgroundColor({color: GOOD_COLOR});
+            } else {
+                chrome.browserAction.setBadgeBackgroundColor({color: OKAY_COLOR});
+            }
         } else {
             chrome.browserAction.setBadgeBackgroundColor({color: OKAY_COLOR});
+            chrome.browserAction.setBadgeText({text: ""});
         }
     },
     {urls: ["<all_urls>"]},
