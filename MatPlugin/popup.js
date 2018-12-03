@@ -155,6 +155,12 @@ message.onMessage.addListener(function(msg) {
     }
 
     document.getElementById("trackerDesc").innerText = trackerDesc;
+
+    if (background.serverCheck == "on") {
+        document.getElementById("content").style.display = "block";
+    } else {
+        document.getElementById("serverStat").innerText = "Server is offline.\nPlease try again later.";
+    }
 });
 
 function capitalizeFirstLetters(str){

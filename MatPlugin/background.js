@@ -5,13 +5,12 @@ const CATEGORIES_FILE = AWS_DNS + "/get-categories";
 const CONTROL_SCORE_FILE = AWS_DNS + "/get-database";
 const CONTROL_SCORE_UPDATE = AWS_DNS + "/update-database";
 
-const SAME_COMPANY_MULTIPLIER = 1;
 const BLACKLIST_MULTIPLIER = 1.5;
-const GOOD_BOUNDARY = 15;
-const BAD_BOUNDARY = 50;
 const GOOD_COLOR = "#00A2FF";
 const BAD_COLOR = "#DC143C";
 const OKAY_COLOR = "#000000";
+
+var serverCheck = "off";
 
 var ADVERTISING_SCORE = 4;
 var ANALYTICS_SCORE = 5;
@@ -68,6 +67,8 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
         importTrackers(TRACKER_LIST_FILE);
         importWebCategory(CATEGORIES_FILE);
         importControlScores(CONTROL_SCORE_FILE);
+
+        alert(serverCheck);
 
         string = "";
         status = "NOSTAT";
@@ -446,44 +447,59 @@ function regexChecker(url, cat) {
 
 // Function to import tracker list
 function importTrackers(url) {
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", url, false);
-    xhr.send();
-    var response = xhr.responseText;
-    var jsonResponse = JSON.parse(response);
-    for (var i = 0; i < jsonResponse.List.length; i++) {
-        allTrackers[jsonResponse.List[i].trackerPattern] = jsonResponse.List[i];
+    try {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", url, false);
+        xhr.send();
+        var response = xhr.responseText;
+        var jsonResponse = JSON.parse(response);
+        for (var i = 0; i < jsonResponse.List.length; i++) {
+            allTrackers[jsonResponse.List[i].trackerPattern] = jsonResponse.List[i];
+        }
+        serverCheck = "on";
+    } catch (e) {
+        serverCheck = "off";
     }
 }
 
 // Function to import category
 function importWebCategory(url) {
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", url, false);
-    xhr.send();
-    var response = xhr.responseText;
-    var jsonResponse = JSON.parse(response);
-    for (var key in jsonResponse) {
-        if (jsonResponse.hasOwnProperty(key)) {
-            categories[key] = new Object();
-            categories[key].category = jsonResponse[key].category;
+    try {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", url, false);
+        xhr.send();
+        var response = xhr.responseText;
+        var jsonResponse = JSON.parse(response);
+        for (var key in jsonResponse) {
+            if (jsonResponse.hasOwnProperty(key)) {
+                categories[key] = new Object();
+                categories[key].category = jsonResponse[key].category;
+            }
         }
+        serverCheck = "on";
+    } catch (e) {
+        serverCheck = "off";
     }
 }
 
 // Function to import database
 function importControlScores(url) {
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", url, false);
-    xhr.send();
-    var response = xhr.responseText;
-    var jsonResponse = JSON.parse(response);
-    for (var key in jsonResponse) {
-        if (jsonResponse.hasOwnProperty(key)) {
-            controlScores[key] = new Object();
-            controlScores[key].score = jsonResponse[key].score;
-            controlScores[key].category = jsonResponse[key].category;
+    try {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", url, false);
+        xhr.send();
+        var response = xhr.responseText;
+        var jsonResponse = JSON.parse(response);
+        for (var key in jsonResponse) {
+            if (jsonResponse.hasOwnProperty(key)) {
+                controlScores[key] = new Object();
+                controlScores[key].score = jsonResponse[key].score;
+                controlScores[key].category = jsonResponse[key].category;
+            }
         }
+        serverCheck = "on";
+    } catch (e) {
+        serverCheck = "off";
     }
 }
 
@@ -610,4 +626,12 @@ function updateDatabase() {
     for (var i = 0; i < jsonResponse.List.length; i++) {
         controlScores[jsonResponse.List[i].website] = jsonResponse.List[i];
     }
+}
+
+function isEmpty(obj) {
+    for(var key in obj) {
+        if(obj.hasOwnProperty(key))
+            return false;
+    }
+    return true;
 }
