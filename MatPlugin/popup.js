@@ -61,10 +61,17 @@ message.onMessage.addListener(function(msg) {
         if (performance > 0) {
             document.getElementById("bar").style.backgroundColor = GOOD_COLOR;
             barWidth = performance;
+        } else if (performance < -95) {
+            document.getElementById("bar").style.backgroundColor = BAD_COLOR;
+            barWidth = 5;
         } else {
             document.getElementById("bar").style.backgroundColor = BAD_COLOR;
             barWidth = 100 - (performance * -1);
             // barWidth = (performance * -1);
+        }
+        
+        if (category == "Others") {
+            category = "Miscellaneous";
         }
 
         if (barWidth > 0 && performance != 0) {
@@ -96,6 +103,9 @@ message.onMessage.addListener(function(msg) {
         if (performance2 > 0) {
             document.getElementById("bar2").style.backgroundColor = GOOD_COLOR;
             barWidth2 = performance2;
+        } else if (performance2 < -95) {
+            document.getElementById("bar").style.backgroundColor = BAD_COLOR;
+            barWidth = 5;
         } else {
             document.getElementById("bar2").style.backgroundColor = BAD_COLOR;
             barWidth2 = 100 - (performance2 * -1);
