@@ -103,7 +103,7 @@ message.onMessage.addListener(function(msg) {
             document.getElementById("bar2").style.backgroundColor = GOOD_COLOR;
             barWidth2 = performance2;
         } else if (performance2 < -95) {
-            document.getElementById("bar").style.backgroundColor = BAD_COLOR;
+            document.getElementById("bar2").style.backgroundColor = BAD_COLOR;
             barWidth2 = 5;
         } else {
             document.getElementById("bar2").style.backgroundColor = BAD_COLOR;
