@@ -111,7 +111,7 @@ message.onMessage.addListener(function(msg) {
             // barWidth2 = (performance2 * -1);
         }
 
-        if (barWidth2 > 0) {
+        if (barWidth2 >= 0) {
             document.getElementById("bar2").style.width = barWidth2 + "%";
             document.getElementById("bar2").style.height = "20px";
             document.getElementById("wrapper2").style.marginTop = "15px";
@@ -130,6 +130,10 @@ message.onMessage.addListener(function(msg) {
 
         document.getElementById("globalBox").innerText = "Against all other sites";
         document.getElementById("performanceBox2").innerText = performanceAnalyis2;
+
+        document.getElementById("trackerWeightDesc").innerText = "Cumulative CookieWeight: ";
+        document.getElementById("trackerWeight").innerText = background.totalScore.toString();
+
     }
 
     document.getElementById("urlHeader").innerText = "Report for";
@@ -138,23 +142,26 @@ message.onMessage.addListener(function(msg) {
     document.getElementById("typeBox").innerText = types;
     document.getElementById("companiesHeader").innerText = "Companies (" + listOfCompaniesList.length.toString() + ")";
     document.getElementById("companiesBox").innerText = companies;
-    document.getElementById("trackerHeader").innerText = "Trackers (" + listOfTrackers.length.toString() + ")";
-    document.getElementById("trackerWeightDesc").innerText = "Cumulative CookieWeight: ";
-    document.getElementById("trackerWeight").innerText = background.totalScore.toString();
-    document.getElementById("trackerBox").innerText = trackers;
+    document.getElementById("trackerHeader").innerText = "Trackers (" + listOfTrackers.length.toString() + ")";    document.getElementById("trackerBox").innerText = trackers;
 
     if (background.totalScore == 0) {
-        document.getElementById("scoreExplanationBox").innerText = "Truly, a site to behold!";
+        // document.getElementById("scoreExplanationBox").innerText = "Truly, a site to behold!";
         document.getElementById("typeHeader").innerText = "";
         document.getElementById("companiesHeader").innerText = "";
         document.getElementById("trackerHeader").innerText = "";
+        document.getElementById("trackerWeightDesc").style.display = "none";
+        document.getElementById("trackerWeight").style.display = "none";
     }
 
     if (types.includes('*')) {
         document.getElementById("typeDesc").innerText = "*This category of tracker is considered to be unsuitable for use with " + category.toLowerCase() + " websites.";
     }
 
-    var trackerDesc = "Hint: The number in the square brackets indicate the CookieWeight assigned to each tracker.\n\n";
+    var trackerDesc = "";
+
+    if (trackers.length > 0) {
+        trackerDesc = "Hint: The number in the square brackets indicate the CookieWeight assigned to each tracker.\n\n"
+    }
 
     if (trackers.includes('*')) {
         trackerDesc = trackerDesc + "*This tracker is considered to be unsuitable for use with " + category.toLowerCase() + " websites. This was taken into consideration when aggregating the CookieScore.\n\n";
